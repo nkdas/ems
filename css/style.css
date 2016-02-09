@@ -1,0 +1,163 @@
+body {	
+	background: #000040 !important;
+	position: relative; 
+}
+
+.navbar {
+	background: #000 !important;
+	margin-bottom: 0px;
+	border-radius: 0px !important;
+}
+
+.navbar-inverse {
+	border: 0px !important;
+}
+
+.affix {
+	top: 0;
+	width: 100%;
+	z-index: 9999 !important;
+}
+
+.affix ~ .container-fluid {
+	position: relative;
+	top: 50px;
+}
+
+#section1, #section2, #section3, #section4, #section5 {
+	padding-top: 30px;
+	padding-bottom: 0px;
+	height: auto;
+	color: #fff;
+}
+
+#section1 {
+	padding-top: 35px !important;
+}
+
+#section5 {
+	padding-top: 0px !important;
+	padding-bottom: 300px !important;
+}
+
+h1 {
+	font-weight: 100 !important;
+	color: #4169E1;
+}
+
+.my-label {
+	font-size: 18px !important;
+	font-weight: 100 !important;
+}
+
+#profilePhoto {
+	width: 150px;
+	height: 180px;
+	background: #333;
+	-webkit-box-shadow: 0 0 5px 1px #000;
+	-moz-box-shadow: 0 0 5px 1px #000;
+	box-shadow: 0 0 5px 1px #000;
+}
+
+.btn .btn-default {
+	margin: auto !important;
+}
+
+.radio {
+	margin-top: 4px !important;
+}
+
+#genderLabel {
+	font-size: 18px !important;
+	font-weight: 100 !important;
+	padding-left: 0px !important;
+}
+
+#homeHeading {
+	margin-top: 0px !important;
+}
+
+.homeHeading {
+	color: #005;
+}
+
+#mainHeading {
+	font-size: 50px !important;
+}
+
+#message, #loginForm, #homeBgDiv { 
+	background: #FFF;
+	padding: 10px !important;
+	color: #005 !important;
+	text-align: center;
+	border-radius: 0px !important;
+
+	-webkit-box-shadow: 0 0 5px 1px #000;
+	-moz-box-shadow: 0 0 5px 1px #000;
+	box-shadow: 0 0 5px 1px #000;
+}
+
+#loginForm, #homeBgDiv { 
+	padding: 20px !important;
+	text-align: left !important;
+}
+
+#loginForm a:link, #loginForm a:visited {
+	text-decoration: none !important;
+	color: #005 !important;
+}
+
+#loginForm a:hover, #loginForm a:active {
+	color: #00f !important;	
+}
+
+#loginForm .btn {
+	background: #005 !important;
+	border: 1px solid #005;
+	border-radius: 0px !important;
+}
+
+#loginForm .btn:hover{
+	background: #00f !important;
+	border: 1px solid #00f;
+}
+
+.has-error .form-control-feedback {
+	color: #f03 !important;
+}
+
+input, select, textarea {
+	border-radius: 0px !important;
+}
+
+.hidden-div {
+	display: none;
+}
+
+.visible-div {
+	display: block;
+}
+
+.progress-bar {
+	background-color: #005 !important;
+}
+
+.progress {
+	border-radius: 0px !important;
+	-webkit-box-shadow: 0 0 5px 1px #00f;
+	-moz-box-shadow: 0 0 5px 1px #00f;
+	box-shadow: 0 0 5px 1px #00f;
+}
+
+#employee, .table-responsive {
+	color: #333 !important;
+	background-color: #fff !important;
+	padding: 5px !important;
+}
+#myModal {
+	color: #333 !important;
+}
+
+.modal {
+	top: 40px !important;
+}

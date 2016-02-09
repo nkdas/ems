@@ -1,0 +1,2 @@
+Please create a database 'emp' and import the 'localhost.sql' present in 'ems/database' directory.
+Database configurations are saved in db_connection.php
