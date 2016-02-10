@@ -1,12 +1,12 @@
 <?php
-require_once('db_connection.php');
+require_once((dirname(__DIR__)) . '/resources/db_connection.php');
 
-$tableColumns = array( 'userName', 'firstName', 'middleName', 'lastName', 'suffix', 'gender', 'dateOfBirth', 'maritalStatus', 'employmentStatus', 'employer', 'email', 
+$tableColumns = array( 'id', 'userName', 'firstName', 'middleName', 'lastName', 'suffix', 'gender', 'dateOfBirth', 'maritalStatus', 'employmentStatus', 'employer', 'email', 
                 'street', 'city', 'state', 'zip', 'telephone', 'mobile', 'fax', 'edit', 'delete');
 
 $output = array("aaData" => array());
 
-$query = mysqli_query($connection, "SELECT userName, firstName, middleName, lastName, suffix, gender, dateOfBirth, maritalStatus, employmentStatus, employer, email, 
+$query = mysqli_query($connection, "SELECT id, userName, firstName, middleName, lastName, suffix, gender, dateOfBirth, maritalStatus, employmentStatus, employer, email, 
                 street, city, state, zip, telephone, mobile, fax
                 FROM employee_details");
 if ($query) {
@@ -16,7 +16,10 @@ if ($query) {
 
         for ( $i = 0; $i < $numberOfColumns; $i++ )
         {
-            if ($i == ($numberOfColumns - 2)) {
+            if (0 == $i || 1 == $i) {
+                $row[] = $record[ $tableColumns[$i] ];
+            }
+            else if ($i == ($numberOfColumns - 2)) {
                 $userName = trim($record['userName']);
                 $row[] = '<input name="' . $userName . '" id="' . $userName . '" type="button" class="edit-button btn btn-primary" onclick="editRecord(' . htmlentities(json_encode($record)) . ')" value="Edit">';
             }
@@ -24,10 +27,20 @@ if ($query) {
                 $row[] = '<input name="' . $userName . '" id="' . $userName . '" type="button" class="delete-button btn btn-primary" onclick="confirmDeletion(' .'\'' . $userName . '\'' . ')" value="Delete">';
             }
             else {
-                $row[] = $record[ $tableColumns[$i] ];
+                $value = $record[ $tableColumns[$i] ];
+                $id = $record[ $tableColumns[0] ];
+                $name = $tableColumns[$i] . $id;
+                
+                $row[] = '<input value="' . $value .
+                '" class="invisibleBox" type="text" onchange="updateRecord('. '\'' . $id .'\',' .'\'' . $name . '\',' .
+                '\'' . $tableColumns[$i] . '\')"' .
+                'id="' . $name . '">';
+                
+                //$row[] = $record[ $tableColumns[$i] ];
             }
         }
         $output['aaData'][] = $row;
+
     }
     echo json_encode( $output );
 }

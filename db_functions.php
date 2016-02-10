@@ -3,6 +3,7 @@
 * This page provides database functions
 */
 
+require('mail.php');
 // function to insert a record while registration
 function insert_record($record, $connection) {
 	// prepare statement
@@ -35,26 +36,30 @@ function insert_record($record, $connection) {
 				//if insertion to the database completed successfully
 				$query2 = mysqli_query($connection, "UPDATE employee_details SET activationKey = '$key' WHERE userName = '$userName' "); 
 
-				// create session to carry the data required to send email and redirect the page to mail.php
 				$_SESSION['id'] = $row['id'];
-				$_SESSION['mail_to'] = $record['email'];
-				$_SESSION['subject'] = "Account activation";
-				$_SESSION['message'] = "Registration successful!<br>Please check your email to activate your account.";
-				$_SESSION['mail_body'] = "Hi " . $record['firstName'] . "!<br>Thank you for registering to EMS<br>
+
+				$mailTo = $record['email'];
+				$mailSubject = "Account activation";
+				$mailBody = "Hi " . $record['firstName'] . 
+				"!<br>Thank you for registering to EMS<br>
 				Please follow the link below to activate your account:<br>
-				<a href='http://localhost/ems/activation.php?id=" . $row['id'] . "&key=" . $key . "'>Activate my account</a>";
-				return 1;
+				<a href='http://localhost/ems/activation.php?id=" . $row['id'] . "&key=" . $key . "'>
+				Activate my account</a>";
+
+				$status = sendMail($mailTo, $mailSubject, $mailBody);
+
+				return $status;
 			}
 			else {
-				return $connection->error;
+				return 'Registration failed';
 			}		
 		}
 		else {
-			return $connection->error;
+			return 'Registration failed';
 		}
 	}
 	else {
-		return $connection->error;
+		return 'Registration failed';
 	}
 }
 

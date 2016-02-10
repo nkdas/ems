@@ -9,23 +9,23 @@ ini_set('display_errors','On');
 error_reporting(E_ALL);
 
 require_once('resources/db_connection.php');
-require('set_data.php');
-require('validate.php');
+require('process_data.php');
 require('db_functions.php');
 
 // check if photo's file name is present in the session
 if (!isset($_SESSION['photo'])) {
     $photo = "";
 }
-
+$row = array();
 // if the user has submitted the form
 if (isset($_POST['update'])) {
     $userId = $_SESSION['id'];
     
-    // set the submitted data to the array $row
-    $row = set_data($_POST, $_FILES, $connection);
+    $processData = new ProcessData;
+    $record = $processData->setData($_POST, $_FILES, $connection);
+    $row = $record;
     // validate $row
-    $errors = validate($row, $connection, "update");
+    $errors = $processData->validateData($row, $connection, "update");
 
     // if no error exists after validation then update the employee_details of the user
     if (!$errors) { 
@@ -42,7 +42,7 @@ if (isset($_POST['update'])) {
 }
 else {
     // populate the fields for editing if user is logged in
-    if ($_SESSION['id']) {
+    if (isset($_SESSION['id'])) {
         $userId = $_SESSION['id'];
         $row = get_record_for_updation($userId, $connection);
         // set session to store the name of the photo so that we can have the photo during resubmission 
@@ -53,6 +53,17 @@ else {
         header("Location: index.php");
     }
 }
+
+function previousValue($item) {
+    global $row;
+    if (isset($row[$item])) {
+        return htmlentities($row[$item]);
+    }
+    else {
+        return "";
+    }
+}
+
 require('layout/header.php');
 ?>
 
@@ -65,7 +76,8 @@ require('layout/header.php');
                     <span class="icon-bar"></span> 
                     <span class="icon-bar"></span> 
                 </button>
-                <a class="navbar-brand" href="home.php"><?php echo htmlentities($row['firstName']) . " " . htmlentities($row['middleName']) . " " . htmlentities($row['lastName']);?></a>
+                <a class="navbar-brand" href="home.php"><?php echo previousValue('firstName') . 
+                " " . previousValue('middleName') . " " . previousValue('lastName');?></a>
                 <a class="navbar-brand" href="home.php">Back</a>
                 <a class="navbar-brand" href="logout.php">Sign out</a>
             </div>
@@ -106,7 +118,7 @@ require('layout/header.php');
             <div class="row">
                 <div class="col-md-3">
                     <label class="my-label">Profile photo:</label>
-                    <img id="profilePhoto" src="images/<?php if ($row['photo']) { echo $row['photo']; } else { echo 'userTile.png'; }?>" class="img-responsive" alt="Profile photo"><br>
+                    <img id="profilePhoto" src="images/<?php if (isset($row['photo'])) { echo $row['photo']; } else { echo 'userTile.png'; }?>" class="img-responsive" alt="Profile photo"><br>
                     <input id="uploadBtn" name="photo" type="file" accept="image/x-png, image/gif, image/jpeg" onchange="readURL(this);"><br>
                 </div>
                 <div class="col-md-9">
@@ -116,17 +128,17 @@ require('layout/header.php');
                     <div class="row"> <!-- Row starts -->
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input name="firstName" type="text" class="form-control required" id="firstName" placeholder="First name" value="<?php echo htmlentities($row['firstName']); ?>">
+                                <input name="firstName" type="text" class="form-control required" id="firstName" placeholder="First name" value="<?php echo previousValue('firstName'); ?>">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input name="middleName" type="text" class="form-control" id="middleName" placeholder="Middle name" value="<?php echo htmlentities($row['middleName']); ?>">
+                                <input name="middleName" type="text" class="form-control" id="middleName" placeholder="Middle name" value="<?php echo previousValue('middleName'); ?>">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <input name="lastName" type="text" class="form-control required" id="lastName" placeholder="Last name" value="<?php echo htmlentities($row['lastName']); ?>">
+                                <input name="lastName" type="text" class="form-control required" id="lastName" placeholder="Last name" value="<?php echo previousValue('lastName'); ?>">
                             </div>
                         </div>
                     </div> <!-- Row ends -->
@@ -135,13 +147,13 @@ require('layout/header.php');
                         <div class="col-md-4">
                             <label class="my-label">Suffix:</label>
                             <select name="suffix" class="form-control" id="suffix">
-                                <option <?php if($row['suffix'] == "M.Tech") {echo "selected";} ?> >M.Tech</option>
-                                <option <?php if($row['suffix'] == "B.Tech") {echo "selected";} ?> >B.Tech</option>
-                                <option <?php if($row['suffix'] == "M.B.A") {echo "selected";} ?> >M.B.A</option>
-                                <option <?php if($row['suffix'] == "B.B.A") {echo "selected";} ?> >B.B.A</option>
-                                <option <?php if($row['suffix'] == "M.C.A") {echo "selected";} ?> >M.C.A</option>
-                                <option <?php if($row['suffix'] == "B.C.A") {echo "selected";} ?> >B.C.A</option>
-                                <option <?php if($row['suffix'] == "Ph.D") {echo "selected";} ?> >Ph.D</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "M.Tech") {echo "selected";} ?> >M.Tech</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "B.Tech") {echo "selected";} ?> >B.Tech</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "M.B.A") {echo "selected";} ?> >M.B.A</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "B.B.A") {echo "selected";} ?> >B.B.A</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "M.C.A") {echo "selected";} ?> >M.C.A</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "B.C.A") {echo "selected";} ?> >B.C.A</option>
+                                <option <?php if(isset($row['suffix']) && $row['suffix'] == "Ph.D") {echo "selected";} ?> >Ph.D</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -150,18 +162,18 @@ require('layout/header.php');
                                 <div class="form-group date">
                                     <input name="dateOfBirth" type="date" class="form-control required" 
                                     id="dateOfBirth" placeholder="mm/dd/yyyy" 
-                                    value="<?php echo $row['dateOfBirth']; ?>">
+                                    value="<?php echo previousValue('dateOfBirth'); ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="my-label">Marital Status:</label>
                             <select name="maritalStatus" class="form-control" id="maritalStatus">
-                                <option <?php if($row['maritalStatus'] == "Single") {echo "selected";} ?> >Single</option>
-                                <option <?php if($row['maritalStatus'] == "Married") {echo "selected";} ?> >Married</option>
-                                <option <?php if($row['maritalStatus'] == "Separated") {echo "selected";} ?> >Separated</option>
-                                <option <?php if($row['maritalStatus'] == "Divorced") {echo "selected";} ?> >Divorced</option>
-                                <option <?php if($row['maritalStatus'] == "Widowed") {echo "selected";} ?> >Widowed</option>
+                                <option <?php if(isset($row['maritalStatus']) && $row['maritalStatus'] == "Single") {echo "selected";} ?> >Single</option>
+                                <option <?php if(isset($row['maritalStatus']) && $row['maritalStatus'] == "Married") {echo "selected";} ?> >Married</option>
+                                <option <?php if(isset($row['maritalStatus']) && $row['maritalStatus'] == "Separated") {echo "selected";} ?> >Separated</option>
+                                <option <?php if(isset($row['maritalStatus']) && $row['maritalStatus'] == "Divorced") {echo "selected";} ?> >Divorced</option>
+                                <option <?php if(isset($row['maritalStatus']) && $row['maritalStatus'] == "Widowed") {echo "selected";} ?> >Widowed</option>
                             </select>
                         </div>
                     </div> <!-- Row ends -->
@@ -171,22 +183,22 @@ require('layout/header.php');
                             <div class="form-group">
                                 <label class="my-label">Employment Status:</label>
                                 <select name="employmentStatus" class="form-control" id="employmentStatus">
-                                    <option <?php if($row['employmentStatus'] == "Student") {echo "selected";} ?> >Student</option>
-                                    <option <?php if($row['employmentStatus'] == "Self-employed") {echo "selected";} ?> >Self-employed</option>
-                                    <option <?php if($row['employmentStatus'] == "Unemployed") {echo "selected";} ?> >Unemployed</option>
+                                    <option <?php if(isset($row['employmentStatus']) && $row['employmentStatus'] == "Student") {echo "selected";} ?> >Student</option>
+                                    <option <?php if(isset($row['employmentStatus']) && $row['employmentStatus'] == "Self-employed") {echo "selected";} ?> >Self-employed</option>
+                                    <option <?php if(isset($row['employmentStatus']) && $row['employmentStatus'] == "Unemployed") {echo "selected";} ?> >Unemployed</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label class="my-label">Employer:</label>
                             <div class="form-group">
-                                <input name="employer" type="text" class="form-control required" id="employer" value="<?php echo htmlentities($row['employer']); ?>">
+                                <input name="employer" type="text" class="form-control required" id="employer" value="<?php echo previousValue('employer'); ?>">
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <label class="my-label">Email:</label>
                             <div class="form-group">
-                                <input name="email" type="text" class="form-control unique edit" id="email" placeholder="someone@example.com" value="<?php echo htmlentities($row['email']); ?>">
+                                <input name="email" type="text" class="form-control unique edit" id="email" placeholder="someone@example.com" value="<?php echo previousValue('email'); ?>">
                             </div>
                             <div id="emailProgress" class="progress hidden-div">
                                 <div class="progress-bar progress-bar-striped active" role="progressbar"
@@ -201,8 +213,10 @@ require('layout/header.php');
                         <div class="col-md-12">
                             <div class="radio">
                                 <label id="genderLabel">Gender:</label>&nbsp;&nbsp;
-                                <label><input type="radio" id="male" name="gender" value="1" <?php if($row['gender'] == "1") {echo "checked";} ?> >Male</label>&nbsp;&nbsp;
-                                <label><input type="radio" id="female" name="gender" value="2" <?php if($row['gender'] == "2") {echo "checked";} ?> >Female</label>
+                                <label><input type="radio" id="male" name="gender" value="1" 
+                                <?php if(isset($row['gender']) && $row['gender'] == "1") {echo "checked";} ?> >Male</label>&nbsp;&nbsp;
+                                <label><input type="radio" id="female" name="gender" value="2" 
+                                <?php if(isset($row['gender']) && $row['gender'] == "2") {echo "checked";} ?> >Female</label>
                             </div>
                         </div>
                     </div> <!-- Row ends -->
@@ -220,22 +234,22 @@ require('layout/header.php');
             <div class="row"> <!-- Row starts -->
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="street" type="text" class="form-control required" id="street" placeholder="Street" value="<?php echo htmlentities($row['street']); ?>">
+                        <input name="street" type="text" class="form-control required" id="street" placeholder="Street" value="<?php echo previousValue('street'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="city" type="text" class="form-control required" id="city" placeholder="City" value="<?php echo htmlentities($row['city']); ?>">
+                        <input name="city" type="text" class="form-control required" id="city" placeholder="City" value="<?php echo previousValue('city'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="state" type="text" class="form-control required" id="state" placeholder="State" value="<?php echo htmlentities($row['state']); ?>">
+                        <input name="state" type="text" class="form-control required" id="state" placeholder="State" value="<?php echo previousValue('state'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="zip" type="text" class="form-control required" id="zip" placeholder="Zip" value="<?php echo htmlentities($row['zip']); ?>">
+                        <input name="zip" type="text" class="form-control required" id="zip" placeholder="Zip" value="<?php echo previousValue('zip'); ?>">
                     </div>
                 </div>
             </div> <!-- Row ends -->
@@ -248,17 +262,18 @@ require('layout/header.php');
             <div class="row"> <!-- Row starts -->
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="telephone" type="text" class="form-control required" id="telephone" placeholder="Telephone" value="<?php echo htmlentities($row['telephone']); ?>">
+                        <input name="telephone" type="text" class="form-control required" id="telephone" placeholder="Telephone" value="<?php echo previousValue('telephone'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="mobile" type="text" class="form-control required" id="mobile" placeholder="Mobile" value="<?php echo htmlentities($row['mobile']); ?>">
+                        <input name="mobile" type="text" class="form-control required" id="mobile" placeholder="Mobile" value="<?php echo previousValue('mobile'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="fax" type="text" class="form-control" id="fax" placeholder="Fax" value="<?php echo htmlentities($row['fax']); ?>">
+                        <input name="fax" type="text" class="form-control" id="fax" placeholder="Fax" 
+                        value="<?php echo previousValue('fax'); ?>">
                     </div>
                 </div>
             </div> <!-- Row ends -->
@@ -273,22 +288,22 @@ require('layout/header.php');
             <div class="row"> <!-- Row starts -->
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeStreet" type="text" class="form-control" id="officeStreet" placeholder="Street" value="<?php echo htmlentities($row['officeStreet']); ?>">
+                        <input name="officeStreet" type="text" class="form-control" id="officeStreet" placeholder="Street" value="<?php echo previousValue('officeStreet'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeCity" type="text" class="form-control" id="officeCity" placeholder="City" value="<?php echo htmlentities($row['officeCity']); ?>">
+                        <input name="officeCity" type="text" class="form-control" id="officeCity" placeholder="City" value="<?php echo previousValue('officeCity'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeState" type="text" class="form-control" id="officeState" placeholder="State" value="<?php echo htmlentities($row['officeState']); ?>">
+                        <input name="officeState" type="text" class="form-control" id="officeState" placeholder="State" value="<?php echo previousValue('officeState'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeZip" type="text" class="form-control" id="officeZip" placeholder="Zip" value="<?php echo htmlentities($row['officeZip']); ?>">
+                        <input name="officeZip" type="text" class="form-control" id="officeZip" placeholder="Zip" value="<?php echo previousValue('officeZip'); ?>">
                     </div>
                 </div>
             </div> <!-- Row ends -->
@@ -301,17 +316,17 @@ require('layout/header.php');
             <div class="row"> <!-- Row starts -->
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeTelephone" type="text" class="form-control" id="officeTelephone" placeholder="Telephone" value="<?php echo htmlentities($row['officeTelephone']); ?>">
+                        <input name="officeTelephone" type="text" class="form-control" id="officeTelephone" placeholder="Telephone" value="<?php echo previousValue('officeTelephone'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeMobile" type="text" class="form-control" id="officeMobile" placeholder="Mobile" value="<?php echo htmlentities($row['officeMobile']); ?>">
+                        <input name="officeMobile" type="text" class="form-control" id="officeMobile" placeholder="Mobile" value="<?php echo previousValue('officeMobile'); ?>">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <input name="officeFax" type="text" class="form-control" id="officeFax" placeholder="Fax" value="<?php echo htmlentities($row['officeFax']); ?>">
+                        <input name="officeFax" type="text" class="form-control" id="officeFax" placeholder="Fax" value="<?php echo previousValue('officeFax'); ?>">
                     </div>
                 </div>
             </div> <!-- Row ends -->
@@ -326,22 +341,26 @@ require('layout/header.php');
             <div class="row"> <!-- Row starts -->
                 <div class="col-sm-3">
                     <div class="checkbox">
-                        <label><input name="optionEmail" type="checkbox" value="1" <?php if($row['optionEmail'] == "1") {echo "checked";} ?> >Email</label>
+                        <label><input name="optionEmail" type="checkbox" value="1" 
+                        <?php if(isset($row['optionEmail']) && $row['optionEmail'] == "1") {echo "checked";} ?> >Email</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox">
-                        <label><input name="optionMessage" type="checkbox" value="1" <?php if($row['optionMessage'] == "1") {echo "checked";} ?> >Message</label>
+                        <label><input name="optionMessage" type="checkbox" value="1" 
+                        <?php if(isset($row['optionMessage']) && $row['optionMessage'] == "1") {echo "checked";} ?> >Message</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox">
-                        <label><input name="optionPhone" type="checkbox" value="1" <?php if($row['optionPhone'] == "1") {echo "checked";} ?> >Phone call</label>
+                        <label><input name="optionPhone" type="checkbox" value="1" 
+                        <?php if(isset($row['optionPhone']) && $row['optionPhone'] == "1") {echo "checked";} ?> >Phone call</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox">
-                        <label><input name="optionAny" type="checkbox" value="1" <?php if($row['optionAny'] == "1") {echo "checked";} ?> >Any</label>
+                        <label><input name="optionAny" type="checkbox" value="1" 
+                        <?php if(isset($row['optionAny']) && $row['optionAny'] == "1") {echo "checked";} ?> >Any</label>
                     </div>
                 </div>
             </div> <!-- Row ends -->
@@ -349,7 +368,8 @@ require('layout/header.php');
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label class="my-label">More about you:</label>
-                        <textarea name="moreAboutYou" class="form-control" rows="5" id="moreAboutYou"><?php echo htmlentities(stripslashes($row['moreAboutYou'])); ?></textarea>
+                        <textarea name="moreAboutYou" class="form-control" rows="5" id="moreAboutYou">
+                        <?php echo stripslashes(previousValue('moreAboutYou')); ?></textarea>
                     </div>
                 </div>
             </div>

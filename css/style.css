@@ -161,3 +161,14 @@ input, select, textarea {
 .modal {
 	top: 40px !important;
 }
+
+.invisibleBox {
+	background: transparent; !important;
+	border-color: transparent !important;
+	width: auto !important;
+}
+
+.visible {
+	background-color: #fff;
+	border-color: #00f;
+}

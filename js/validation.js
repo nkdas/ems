@@ -288,7 +288,7 @@ $(document).ready(function(){
 
 		// we need to check from where the request is coming from (registration page or edit page)
 		if ($(this).attr('class') == 'form-control unique edit') {
-			var callingPage = 'edit';
+			var callingPage = 'update';
 		}
 		else {
 			var callingPage = 'register';
@@ -297,11 +297,12 @@ $(document).ready(function(){
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			url: "validate.php",
-			data: "function=check_uniqueness&element=" + element + "&elementValue=" + $(this).val() + "&callingPage=" + callingPage,
+			url: "process_data.php",
+			data: "function=checkUniqueness&element=" + element + "&elementValue=" + $(this).val() + 
+			"&callingPage=" + callingPage,
 
 			success: function(data) {
-				if (data.status == 1) {
+				if (data.status == 'unavailable') {
 					if (element == 'email') {
 						changeAppearanceError('#email', 'This Email ID is already taken');
 					}

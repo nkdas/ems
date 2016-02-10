@@ -1,9 +1,21 @@
 $(document).ready(function() {
+
+	$.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
+	{
+	    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+	        return $('input', td).val();
+	    } );
+	}
+	
 	dat = $('#employee').DataTable({
 		paging: true,
 		searching: true,
 		retrieve: true,
-		"ajax": "fetch_records.php"
+		"ajax": "fetch_records.php",
+        "columnDefs": [
+		    { "orderDataType": "dom-text", type: "string", 
+		    "targets": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 ] },
+		]
 	});
 });
 
@@ -40,7 +52,9 @@ function deleteRecord(userName) {
 function editRecord(record) {
 	$('.modal-title').html("Edit Record");
 
-	$modalContent = "<form name='modalForm' method='post'><input name='userName' type='text' class='hiddenDiv' value='" + record['userName'] + "'>" + 
+	$modalContent = "<form name='modalForm' action='admin_home.php' method='post'>" +
+	"<input name='id' type='text' class='hidden-div' value='" + record['id'] + "'>" +
+	"<input name='userName' type='text' class='hidden-div' value='" + record['userName'] + "'>" + 
 	"<label>First name</label><input name='firstName' type='text' class='form-control' value='" + record['firstName'] + "'>" +
 	"<label>Middle name</label><input name='middleName' type='text' class='form-control' value='" + record['middleName'] + "'>" +
 	"<label>Last name</label><input name='lastName' type='text' class='form-control' value='" + record['lastName'] + "'>" +
@@ -84,7 +98,7 @@ function editRecord(record) {
 	"<label>Telephone</label><input name='telephone' type='text' class='form-control' value='" + record['telephone'] + "'>" +
 	"<label>Mobile</label><input name='mobile' type='text' class='form-control' value='" + record['mobile'] + "'>" +
 	"<label>FAX</label><input name='fax' type='text' class='form-control' value='" + record['fax'] + "'><br>" +
-	"<input type='button' onclick='updateRecord()' class='btn btn-primary' value='Update'></form>";
+	"<input name='submit' type='submit' class='btn btn-primary' value='Update'></form>";
 
 	$('.modal-body').html($modalContent);
 	$('#myModal').modal('show');
@@ -94,24 +108,25 @@ function editRecord(record) {
 	$("#employmentStatus option[value='" + record['employmentStatus'] + "']").attr('selected','selected'); 
 }
 
-function updateRecord() {
-	var formData = $('form').serialize();
+function updateRecord(id,name,element) {
+	name = '#'+name;
+	var value = $(name).val();
+	
 	$.ajax({
 		type: "POST",
 		dataType: "json",
-		url: "update_record.php",
-		data: formData,
+		url: "inline_update.php",
+		data: "id=" + id + "&element=" + element + "&value=" + value,
 		success: function(data) {
-			if (data.status == '1') {
-				$('#myModal').modal('hide');
+			if ('success' == data.status) {
 				dat.ajax.reload();
 			}
 			else {
-				console.log(data.status);
+				alert('updation failed');
 			}
 		},
 		error: function() {
-			console.log('error');
+			
 		},
 	});
 }

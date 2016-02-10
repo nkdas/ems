@@ -8,7 +8,13 @@
 ini_set('display_errors','On');
 error_reporting(E_ALL);
 
+// start session if not started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once('resources/db_connection.php');
+require('mail.php');
 
 // if the user is already signed in then redirect to home page
 if (isset($_SESSION['id'])) {
@@ -37,18 +43,23 @@ else
                                                 WHERE userName = '$userName' AND email = '$email'");
             if ($query && ($row = mysqli_fetch_assoc($query))) {
                     $key = $row['activationKey'];
-                    
-                    // set session for the employee_details to be used for sending the email to the user
-                    $_SESSION['id'] = $row['id'];
-                    $_SESSION['mail_to'] = $email;
-                    $_SESSION['subject'] = "Password Recovery";
-                    $_SESSION['message'] = "Please check your email, We have sent you a link to change your password.";
-                    $_SESSION['mail_body'] = "Hi " . $row['firstName'] . "!<br>Follow the link to change your password.<br>
-                    <a href='http://localhost/ems/change_password.php?key=$key'>Change your password</a>";
                    
-                    // after setting the session redirect to mail.php
-                    header("Location: mail.php");
-                
+                $_SESSION['id'] = $row['id'];
+
+                $mailTo = $email;
+                $mailSubject = "Password Recovery";
+                $mailBody = "Hi " . $row['firstName'] . 
+                "!<br>Follow the link to change your password.<br>
+                <a href='http://localhost/ems/change_password.php?key=$key'>Change your password</a>";
+                   
+                $status = sendMail($mailTo, $mailSubject, $mailBody);
+                if ('success' == $status) {
+                    $_SESSION['message'] = "Please check your email and follow the link to change your password.";
+                }
+                else if ('failed' == $status) {
+                    $_SESSION['message'] = "Unable to send mail.";
+                }
+                header("Location: index.php");
             }
             // if fetch from the database is unsuccessful
             else

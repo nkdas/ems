@@ -1,5 +1,40 @@
 <?php
-require('header.php');
+require_once((dirname(__DIR__)) . '/resources/db_connection.php');
+require((dirname(__DIR__)) . '/db_functions.php');
+require((dirname(__DIR__)) . '/process_data.php');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['pk_admin'])) {
+	header("Location: index.php");
+}
+else {
+	if (isset($_POST['submit'])) {
+    $userId = $_POST['id'];
+    $_SESSION['userName'] = $_POST['userName'];
+    
+    $processData = new ProcessData;
+    $record = $processData->setData($_POST, $_FILES);
+    $row = $record;
+    // validate $row
+    $errors = $processData->validateData($row, "update");
+    
+    // if no error exists after validation then update the employee_details of the user
+    if (!$errors) { 
+        $status = update_record($userId, $connection, $row);
+        if(1 == $status) {
+            $_SESSION['message'] = "Your changes have been saved successfully";
+            header("Location: admin_home.php");
+        }
+        else {
+            $_SESSION['message'] = "Sorry! Unable to save your changes";
+            header("Location: admin_home.php");
+        }
+    }
+}
+
+}
+require((dirname(__DIR__)) . '/layout/header.php');?>
 ?>
 <body>
 	<nav class="navbar navbar-inverse" data-spy="affix">
@@ -15,12 +50,20 @@ require('header.php');
 			<div>
 				<div class="collapse navbar-collapse" id="homeNavbar">
 					<ul class="nav navbar-nav">
+						<li id="displayMap"><a href="#" onclick="displayMap();">Show users on Map</a></li>
+						<li id="hideMap"><a href="#" onclick="hideMap();">Hide Map</a></li>
+						<li><a href="logout.php">Sign out</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</nav>
 	<div id="section1" class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div id="googleMap"></div>
+			</div>
+		</div><br>
 		<div class="row">
 			<div class="col-md-12">
 
@@ -30,7 +73,8 @@ require('header.php');
 						<!-- Modal content-->
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<button type="button" class="close" data-dismiss="modal">&times;
+								</button>
 								<h4 class="modal-title"></h4>
 							</div>
 							<div class="modal-body">
@@ -43,6 +87,7 @@ require('header.php');
 					<table id="employee" class="display table" cellspacing="0" width="100%">
 						<thead>
 							<tr>
+								<th>ID</th>
 								<th>Username</th>
 								<th>Firstname</th>
 								<th>Middlename</th>
@@ -71,4 +116,4 @@ require('header.php');
 		</div>
 	</div>
 </body>
-<?php require('footer.php');?>
+<?php require((dirname(__DIR__)) . '/layout/footer.php');?>

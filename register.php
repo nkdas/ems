@@ -8,10 +8,14 @@
 ini_set('display_errors','On');
 error_reporting(E_ALL);
 
+// start session if not started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once('resources/db_connection.php');
-require('set_data.php');
-require('validate.php');
 require('db_functions.php');
+require('process_data.php');
 
 // check if profile photo's file name is present in the session
 if (!isset($_SESSION['photo'])) {
@@ -21,32 +25,37 @@ if (!isset($_SESSION['photo'])) {
 // if the user has submitted the form
 if (isset($_POST['submit'])) {
 
-    // set submitted data to an array $record
-    $record = set_data($_POST, $_FILES, $connection);
-    
+    $processData = new ProcessData;
+    $record = $processData->setData($_POST, $_FILES, $connection);
+
     // set session to store the name of the photo so that we can have the photo during resubmission 
     // (in case of validation errors)
     $_SESSION['photo'] = $record['photo'];
     
     // validate data in $record
-    $errors = validate($record, $connection, "register");
+    $errors = $processData->validateData($record, $connection, "register");
     
     // if no error exists after validation then encrypt the passwords and
     // enter the details to the database.
-    if (!$errors) { 
+    if (!$errors) {
         $record['password'] = md5($record['password']);
         $status = insert_record($record, $connection);
-        if ($status == 1) {
-            header("Location: mail.php");
+        if ('success' == $status) {
+            $_SESSION['message'] = "Registration successful!<br>Please check your email to activate 
+                your account.";
         }
-        else {
-            $errors .= $status;
+        else if ('failed' == $status) {
+            $_SESSION['message'] = "Unable to send mail.";
         }
+        else if ('Registration failed' == $status) {
+            $_SESSION['message'] = "Registration failed.";
+        }
+        header("Location: index.php");
     }  
 }
 function previousValue($item) {
     if (isset($_POST[$item])) {
-        return $_POST[$item];
+        return htmlentities(trim($_POST[$item]));
     }
     else {
         return "";
@@ -88,7 +97,7 @@ method="post">
             <div class="col-md-12 message">
                 <?php
                         // creating a div to show errors
-                if (isset($errors) && (0 != $errors.length)) {
+                if (isset($errors)) {
                     echo '<div id="message" class="jumbotron visible-div"><br>';
                     foreach($errors as $e => $e_value) {
                         echo '<label class="my-label">' . $e_value . '</label><br>';
@@ -143,7 +152,7 @@ method="post">
             <div class="col-sm-4">
                 <label class="my-label">Re-enter Password:</label>
                 <div class="form-group">
-                    <input name="reEntereEnterPassword" type="password" 
+                    <input name="reEnterPassword" type="password" 
                     class="form-control required" id="reEnterPassword" 
                     value="<?php echo previousValue('reEnterPassword'); ?>">
                 </div>
@@ -438,10 +447,10 @@ method="post">
                     <div class="row"> <!-- Create input fields -->
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label class="my-label">moreAboutYou about you:</label>
+                                <label class="my-label">More about you:</label>
                                 <textarea name="moreAboutYou" class="form-control" rows="5" 
                                 id="moreAboutYou">
-                                <?php echo stripslashes(previousValue('moreAboutYou')); ?>
+                                <?php echo trim(stripslashes(previousValue('moreAboutYou'))); ?>
                             </textarea>
                         </div>
                     </div>
