@@ -1,6 +1,7 @@
 body {	
 	background: #000040 !important;
 	position: relative; 
+	color: #fff !important;
 }
 
 .navbar {
@@ -24,13 +25,15 @@ body {
 	top: 50px;
 }
 
-#section1, #section2, #section3, #section4, #section5 {
+#section1, #section2, #section3, #section4, #section5, #sectionAdmin {
 	padding-top: 30px;
 	padding-bottom: 0px;
 	height: auto;
 	color: #fff;
 }
-
+#sectionAdmin {
+	padding-top: 15px !important;
+}
 #section1 {
 	padding-top: 35px !important;
 }

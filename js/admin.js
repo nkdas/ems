@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	getRolesSelect();
+	displayRoles();
+	displayResources();
+	getResourcePrivilege();
 
 	$.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
 	{
@@ -124,6 +128,132 @@ function updateRecord(id,name,element) {
 			else {
 				alert('updation failed');
 			}
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function saveData() {
+	var form=$("#myform");
+	$.ajax({
+		type: "POST",
+		dataType: "json",
+		url: "save_privileges.php",
+		data: form.serialize(),
+		success: function(data) {
+			if ('success' == data.status) {
+				alert('success');
+			}
+			else {
+				alert('fail');
+			}
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function getResourcePrivilege() {
+	$.ajax({
+		type: "POST",
+		dataType: "html",
+		url: "getResourcePrivilege.php",
+		data: "role=" + $('#roleSelect').val(),
+		success: function(data) {
+			$('#tableContent').html(data);
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function getRolesSelect() {
+	$.ajax({
+		type: "POST",
+		dataType: "html",
+		url: "createHtml.php",
+		data: "item=roleSelect",
+		success: function(data) {
+			$('#roleSelect').html(data);
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function displayRoles() {	
+	$.ajax({
+		type: "POST",
+		dataType: "html",
+		url: "createHtml.php",
+		data: "item=role",
+		success: function(data) {
+			$('#roleContent').html(data);
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function displayResources() {	
+	$.ajax({
+		type: "POST",
+		dataType: "html",
+		url: "createHtml.php",
+		data: "item=resource",
+		success: function(data) {
+			$('#resourceContent').html(data);
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function addRole() {	
+	$.ajax({
+		type: "POST",
+		dataType: "html",
+		url: "add.php",
+		data: "role=" + $('#roleBox').val(),
+		success: function(data) {
+			if('success' == data) {
+				displayRoles();
+				getRolesSelect();
+			}
+			else {
+				alert('A Role should be unique, '+
+					'make sure the role you are adding is not already added');
+			}
+		},
+		error: function() {
+			
+		},
+	});
+}
+
+function addResource() {	
+	$.ajax({
+		type: "POST",
+		dataType: "text",
+		url: "add.php",
+		data: "resource=" + $('#resourceBox').val(),
+		success: function(data) {
+			if('success' == data) {
+				displayResources();
+				getResourcePrivilege();
+			}
+			else {
+				alert('A Resource should be unique, '+
+					'make sure the resource you are adding is not already added');
+			}
+			
 		},
 		error: function() {
 			
