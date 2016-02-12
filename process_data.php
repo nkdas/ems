@@ -109,7 +109,8 @@ class ProcessData implements DataFunctions {
             }
             // check if both the passwords entered by the user match
             if($record['password'] != $record['reEnterPassword']) {
-                $errors[$i] = "Passwords entered in the 'Password' and 'Re-enter Password' fields donot match";
+                $errors[$i] = "Passwords entered in the 'Password' and 'Re-enter Password' 
+                fields donot match";
                 $i++;
             }
         }
@@ -243,12 +244,12 @@ class ProcessData implements DataFunctions {
         global $connection;
         $emailAvailability = 'unavailable';
 
-        // if we are checking for email uniqueness while the user is editing then we must skip the email 
-        // id which the user is already using
+        // if we are checking for email uniqueness while the user is editing then we must skip 
+        // the email id which the user is already using
 
         $condition = '';
         $conditionValue = '';
-       
+
         if (('update' == $callingPage) && ('email' == $element)) {
 
             if (isset($_SESSION['userName'])) {
@@ -259,7 +260,7 @@ class ProcessData implements DataFunctions {
                 $condition = 'id';
                 $conditionValue = $_SESSION['id'];
             }
-            
+
             $query = mysqli_query($connection, "SELECT id 
                 FROM employee_details
                 WHERE email = '$elementValue' AND  $condition != '$conditionValue' ");
@@ -305,7 +306,7 @@ class ProcessData implements DataFunctions {
 
 if (isset($_POST['function']) && 'checkUniqueness' == $_POST['function']) {
     $processData = new ProcessData;
-    $processData->checkUniqueness($_POST['element'],$_POST['elementValue'],$_POST['callingPage'],'ajax');
+    $processData->checkUniqueness($_POST['element'],$_POST['elementValue'],
+    $_POST['callingPage'],'ajax');
 }
-
 ?>

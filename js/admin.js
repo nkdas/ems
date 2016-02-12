@@ -1,9 +1,4 @@
 $(document).ready(function() {
-	getRolesSelect();
-	displayRoles();
-	displayResources();
-	getResourcePrivilege();
-
 	$.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
 	{
 	    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
@@ -154,6 +149,13 @@ function saveData() {
 			
 		},
 	});
+}
+
+function initializeAcl() {
+	getRolesSelect();
+	displayRoles();
+	displayResources();
+	getResourcePrivilege();
 }
 
 function getResourcePrivilege() {

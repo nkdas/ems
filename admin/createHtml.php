@@ -2,21 +2,26 @@
 require_once((dirname(__DIR__)) . '/resources/db_connection.php');
 require((dirname(__DIR__)) . '/db_functions.php');
 
-// recieve ajax post
-$createObject = new CreateHtml;
-if (isset($_POST['item'])) {
-    if ('role' == $_POST['item']) {
-        $status = $createObject->createRolesHtml();
-        echo $status;
+if (isset($_SESSION['pk_admin'])) {
+    // recieve ajax post
+    $createObject = new CreateHtml;
+    if (isset($_POST['item'])) {
+        if ('role' == $_POST['item']) {
+            $status = $createObject->createRolesHtml();
+            echo $status;
+        }
+        else if ('resource' == $_POST['item']) {
+            $status = $createObject->createResourceHtml();
+            echo $status;
+        }
+        else {
+            $status = $createObject->createRoleSelectHtml();
+            echo $status;
+        }
     }
-    else if ('resource' == $_POST['item']) {
-        $status = $createObject->createResourceHtml();
-        echo $status;
-    }
-    else {
-        $status = $createObject->createRoleSelectHtml();
-        echo $status;
-    }
+}
+else {
+    header("Location: index.php");
 }
 
 class CreateHtml {

@@ -1,23 +1,41 @@
 <?php
-
-    $address = urlencode($_POST['address']);
-
-    $url = "http://maps.googleapis.com/maps/api/geocode/json?address=$address&sensor=false";
-
-    // Make the HTTP request
-    $data = file_get_contents($url);
-    // Parse the json response
-    $jsondata = json_decode($data,true);
-
-    // If the json data is invalid, return empty array
-    if (!check_status($jsondata)) {
-    	//return array();
-    }
-
-    $LatLng = array(
-        'lat' => $jsondata["results"][0]["geometry"]["location"]["lat"],
-        'lng' => $jsondata["results"][0]["geometry"]["location"]["lng"],
-    );
-
-   echo json_encode($LatLng);
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['pk_admin'])) {
+    header('Location: index.php');
+}
+require((dirname(__DIR__)) . '/layout/header.php');
 ?>
+<body onload="displayMap()">
+    <nav class="navbar navbar-inverse" data-spy="affix">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                data-target="#homeNavbar">
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                </button>
+                <a class="navbar-brand" href="admin_home.php">Admin</a> 
+            </div>
+            <div>
+                <div class="collapse navbar-collapse" id="homeNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Map</a></li>
+                        <li><a href="privilege.php">Settings</a></li>
+                        <li><a href="logout.php">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="section1" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="googleMap"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<?php require((dirname(__DIR__)) . '/layout/footer.php');?>

@@ -2,9 +2,6 @@
 require_once((dirname(__DIR__)) . '/resources/db_connection.php');
 require((dirname(__DIR__)) . '/db_functions.php');
 require((dirname(__DIR__)) . '/process_data.php');
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
 
 if (!isset($_SESSION['pk_admin'])) {
     header("Location: index.php");
@@ -36,7 +33,7 @@ else {
 }
 
 }
-require((dirname(__DIR__)) . '/layout/header.php');?>
+require((dirname(__DIR__)) . '/layout/header.php');
 ?>
 <body>
     <nav class="navbar navbar-inverse" data-spy="affix">
@@ -53,9 +50,7 @@ require((dirname(__DIR__)) . '/layout/header.php');?>
             <div>
                 <div class="collapse navbar-collapse" id="homeNavbar">
                     <ul class="nav navbar-nav">
-                        <li id="displayMap"><a href="#" onclick="displayMap();">
-                        Show users on Map</a></li>
-                        <li id="hideMap"><a href="#" onclick="hideMap();">Hide Map</a></li>
+                        <li><a href="map.php">Map</a></li>
                         <li><a href="privilege.php">Settings</a></li>
                         <li><a href="logout.php">Sign out</a></li>
                     </ul>
@@ -64,11 +59,6 @@ require((dirname(__DIR__)) . '/layout/header.php');?>
         </div>
     </nav>
     <div id="section1" class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div id="googleMap"></div>
-            </div>
-        </div><br>
         <div class="row">
             <div class="col-md-12">
 

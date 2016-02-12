@@ -10,9 +10,9 @@ if (!isset($_SESSION['pk_admin'])) {
     header("Location: index.php");
 }
 
-require((dirname(__DIR__)) . '/layout/header.php');?>
+require((dirname(__DIR__)) . '/layout/header.php');
 ?>
-<body>
+<body onload="initializeAcl()">
     <nav class="navbar navbar-inverse" data-spy="affix">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -27,9 +27,7 @@ require((dirname(__DIR__)) . '/layout/header.php');?>
             <div>
                 <div class="collapse navbar-collapse" id="homeNavbar">
                     <ul class="nav navbar-nav">
-                        <li id="displayMap"><a href="#" onclick="displayMap();">
-                        Show users on Map</a></li>
-                        <li id="hideMap"><a href="#" onclick="hideMap();">Hide Map</a></li>
+                        <li><a href="map.php">Map</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="logout.php">Sign out</a></li>
                     </ul>

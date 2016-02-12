@@ -1,15 +1,20 @@
 <?php
 require_once((dirname(__DIR__)) . '/resources/db_connection.php');
 
-// recieve ajax post
-$addObject = new Add;
-if (isset($_POST['role'])) {
-    $status = $addObject->add('roles', 'role', $_POST['role']);
-    echo $status;
+if (isset($_SESSION['pk_admin'])) {
+    // recieve ajax post
+    $addObject = new Add;
+    if (isset($_POST['role'])) {
+        $status = $addObject->add('roles', 'role', $_POST['role']);
+        echo $status;
+    }
+    else if (isset($_POST['resource'])) {
+        $status = $addObject->add('resources', 'resource', $_POST['resource']);
+        echo $status;
+    }
 }
-else if (isset($_POST['resource'])) {
-    $status = $addObject->add('resources', 'resource', $_POST['resource']);
-    echo $status;
+else {
+    header("Location: index.php");
 }
 
 class Add {
@@ -20,7 +25,7 @@ class Add {
             $status = 'success';
         }
         else {
-            $status = $query;
+            $status = 'failed';
         }
         return $status;
     }

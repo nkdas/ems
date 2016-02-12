@@ -23,8 +23,9 @@ try {
 catch (Exception $ex) {}
 
 if (isset($_SESSION['id']) || isset($_SESSION['key'])) {
-    
-    // if the session doesn't have a 'key', it means user has not forgotten the password and wants to change it
+
+    // if the session doesn't have a 'key', it means user has not forgotten the password and 
+    // wants to change it
     if(!isset($_SESSION['key'])) {
         $userId = $_SESSION['id'];
         $name = $_SESSION['name'];
@@ -37,7 +38,8 @@ if (isset($_SESSION['id']) || isset($_SESSION['key'])) {
             $password = mysqli_real_escape_string($connection, trim($_POST['password']));
         }
         $newPassword = mysqli_real_escape_string($connection, trim($_POST['newPassword']));
-        $reEnterNewPassword = mysqli_real_escape_string($connection, trim($_POST['reEnterNewPassword']));
+        $reEnterNewPassword = mysqli_real_escape_string($connection, 
+        trim($_POST['reEnterNewPassword']));
 
         // array to store the errors
         $errors = array();
@@ -51,11 +53,13 @@ if (isset($_SESSION['id']) || isset($_SESSION['key'])) {
         } 
         // check if new password and repeat new password fields contain the same value
         if ($newPassword != $reEnterNewPassword) {
-            $errors[$i] = "Passwords entered in the 'Password' and 'Re-enter Password' fields donot match";
+            $errors[$i] = "Passwords entered in the 'Password' and 'Re-enter Password' 
+            fields donot match";
             $i++;
         }
 
-        // backup passwords to be used if the user has made errors and the password fields need to be repopulated
+        // backup passwords to be used if the user has made errors and the password fields 
+        // need to be repopulated
         if (!isset($_SESSION['key'])) {
             $passwordBackup = $password;
             $password = md5($password);
@@ -145,7 +149,8 @@ require('layout/header.php');
         <nav class="navbar navbar-inverse" data-spy="affix">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#homeNavbar">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                    data-target="#homeNavbar">
                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span> 
                         <span class="icon-bar"></span> 
@@ -200,14 +205,18 @@ require('layout/header.php');
                                         id="password" ><br>
                                         <?php } ?>
                                         <label class="my-label">New Password</label>
-                                        <input name="newPassword" type="password" class="form-control" 
+                                        <input name="newPassword" type="password" 
+                                        class="form-control" 
                                         id="newPassword" ><br>
                                         <label class="my-label">Re-enter New Password</label>
-                                        <input name="reEnterNewPassword" type="password" class="form-control" 
+                                        <input name="reEnterNewPassword" type="password" 
+                                        class="form-control" 
                                         id="reEnterNewPassword" >
                                         <br>
-                                        <input name="submit" type="submit" class="btn btn-primary" value="Change Password">
-                                        <input name="cancel" type="submit" class="btn btn-primary" value="Cancel">
+                                        <input name="submit" type="submit" 
+                                        class="btn btn-primary" value="Change Password">
+                                        <input name="cancel" type="submit" 
+                                        class="btn btn-primary" value="Cancel">
                                     </div>
                                 </div>
                             </div>

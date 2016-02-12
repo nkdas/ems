@@ -10,7 +10,7 @@ if(isset($_POST['role'])) {
     if (isset($resourcePrivileges)) {
         removeResourcePrivilege($connection, $roleId);
     }
- 
+
     foreach ($_POST as $key => $value) {
         if ('role' != $key) {
             $data = explode("_", $value);

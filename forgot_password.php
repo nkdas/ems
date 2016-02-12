@@ -36,25 +36,26 @@ else
             // fetch userName and email from $_POST
             $userName = mysqli_real_escape_string($connection, trim($_POST['userName']));
             $email = mysqli_real_escape_string($connection, trim($_POST['email']));
-            
+
             // fetch activation key, id, firstName of the user from the database
             $query = mysqli_query($connection, "SELECT activationKey, id, firstName 
                                                 FROM employee_details 
                                                 WHERE userName = '$userName' AND email = '$email'");
             if ($query && ($row = mysqli_fetch_assoc($query))) {
-                    $key = $row['activationKey'];
-                   
+                $key = $row['activationKey'];
                 $_SESSION['id'] = $row['id'];
 
                 $mailTo = $email;
                 $mailSubject = "Password Recovery";
                 $mailBody = "Hi " . $row['firstName'] . 
                 "!<br>Follow the link to change your password.<br>
-                <a href='http://localhost/ems/change_password.php?key=$key'>Change your password</a>";
-                   
+                <a href='http://localhost/ems/change_password.php?key=$key'>Change your password
+                </a>";
+
                 $status = sendMail($mailTo, $mailSubject, $mailBody);
                 if ('success' == $status) {
-                    $_SESSION['message'] = "Please check your email and follow the link to change your password.";
+                    $_SESSION['message'] = "Please check your email and follow the link to change 
+                    your password.";
                 }
                 else if ('failed' == $status) {
                     $_SESSION['message'] = "Unable to send mail.";
@@ -84,7 +85,6 @@ function previousValue($item) {
 
 require('layout/header.php');
 ?>
-
     <body>
         <section id="section1" class="container">
             <div class="row">
@@ -118,13 +118,19 @@ require('layout/header.php');
                                 <div id="loginForm" class="jumbotron">
                                     <div class="form-group">
                                         <label class="my-label">Username</label>
-                                        <input name="userName" type="text" class="form-control" id="userName" 
-                                        placeholder="userName" value="<?php echo previousValue('userName'); ?>"><br>
+                                        <input name="userName" type="text" class="form-control" 
+                                        id="userName" placeholder="userName" 
+                                        value="<?php echo previousValue('userName'); ?>"><br>
+
                                         <label class="my-label">Email</label>
-                                        <input name="email" type="text" class="form-control" id="email" 
-                                        placeholder="someone@example.com" value="<?php echo previousValue('email'); ?>"><br>
-                                        <input name="submit" type="submit" class="btn btn-primary" value="Submit">
-                                        <input name="cancel" type="submit" class="btn btn-primary" value="Cancel">
+                                        <input name="email" type="text" class="form-control" 
+                                        id="email" placeholder="someone@example.com" 
+                                        value="<?php echo previousValue('email'); ?>"><br>
+
+                                        <input name="submit" type="submit" class="btn btn-primary" 
+                                        value="Submit">
+                                        <input name="cancel" type="submit" class="btn btn-primary" 
+                                        value="Cancel">
                                     </div>
                                 </div>
                             </div>

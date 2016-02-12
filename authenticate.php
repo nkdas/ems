@@ -29,26 +29,27 @@ if ($query and $row = mysqli_fetch_assoc($query)) {
     if ($page == 'user') {
         // check if the account of the registered user is activated
         if($row['activationStatus'] == 1) {
-            
-            // if the account of the user is activated, then create sessions for the user and display the users home page.
+
+            // if the account of the user is activated, then create sessions for the user and 
+            // display the users home page.
             $_SESSION['id'] = $row['id'];
-            $status = array('status' => '1');
+            $status = array('status' => 'login success');
             echo json_encode($status);
         }
         else {
-            $status = array('status' => '2');
+            $status = array('status' => 'inactive account');
             echo json_encode($status);
         }
     }
     else {
         $_SESSION['pk_admin'] = $row['pk_admin'];
-        $status = array('status' => '4');
+        $status = array('status' => 'admin login success');
         echo json_encode($status);
     }
 }
 else
 {
-    $status = array('status' => '3');
+    $status = array('status' => 'invalid credentials');
     echo json_encode($status);
 }
 ?>
