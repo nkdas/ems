@@ -1,14 +1,15 @@
 <?php
 /**
-* This page serves as the home page for the user
+* This page serves as the home page for the user.
+*
 * @author Neeraj Kumar Das <neeraj.das@mindfiresolutions.com>
 */
 
 // Turn on error reporting
-ini_set('display_errors','On');
+ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-require_once('resources/db_connection.php');
+require_once 'resources/db_connection.php';
 
 // this variable acts as a flag to determine if user employee_details are retrieved successfully 
 // from the database and weather to show the home page or not
@@ -23,24 +24,25 @@ if (isset($_SESSION['id'])) {
     $userId = $_SESSION['id'];
 
     // fetch user details from the database
-    $query = mysqli_query($connection, "SELECT userName, password, firstName, middleName, 
+    $query = mysqli_query(
+        $connection,
+        "SELECT userName, password, firstName, middleName, 
         lastName, suffix, gender, dateOfBirth, maritalStatus, employmentStatus, employer, email, 
         street, city, state, zip, telephone, mobile, fax, officeStreet, officeCity, officeState,
         officeZip, officeTelephone, officeMobile, officeFax, optionEmail, optionMessage, 
         optionPhone, optionAny, moreAboutYou, photo
         FROM employee_details
-        WHERE id = $userId");
+        WHERE id = $userId"
+    );
     if ($query and $row = mysqli_fetch_assoc($query)) {
         $pass = 1;
-        $name = $row['firstName'] . " " . $row['middleName'] . " " . $row['lastName'];
+        $name = $row['firstName'].' '.$row['middleName'].' '.$row['lastName'];
         $_SESSION['name'] = $name;
     }
+} else {
+    header('Location: index.php');
 }
-// if user is not signed in, then redirect to index.php
-else {
-    header("Location: index.php");
-}
-require('layout/header.php');
+require 'layout/header.php';
 ?>
 
 <body>
@@ -63,6 +65,9 @@ require('layout/header.php');
                         <li><a href="edit.php">Edit profile</a></li>
                         <li><a href="change_password.php">Change password</a></li>
                         <li><a href="logout.php">Sign out</a></li>
+                        <li><a href="assignments.php">Assignment</a></li>
+                        <li><a href="notice.php">Notice</a></li>
+                        <li><a href="events.php">Events</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,27 +76,28 @@ require('layout/header.php');
     <div id="section1" class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <?php
-                // creating a div to show messages
-                if (isset($message)) {
-                    echo '<div id="message" class="jumbotron visible-div">';
-                    echo '<label class="my-label">'.$message.'</label></div>';
-                    if (!$_SESSION['id']) {
-                        session_unset();
-                        session_destroy();
-                    }
-                }
-                ?>
+<?php
+// creating a div to show messages
+if (isset($message)) {
+    echo '<div id="message" class="jumbotron visible-div">';
+    echo '<label class="my-label">'.$message.'</label></div>';
+    if (!$_SESSION['id']) {
+        session_unset();
+        session_destroy();
+    }
+}
+?>
             </div>
         </div> <!-- row ends -->
 
         <div class="row">
             <div class="col-md-2">
-                <img id="profilePhoto" src="images/
-                <?php if ($row['photo']) { echo $row['photo']; } 
-                else { echo 'userTile.png'; }?>" class="img-responsive" alt="Profile photo"><br>
+                <img id="profilePhoto" src="images/<?php if ($row['photo']) {
+    echo $row['photo'];
+} else {
+    echo 'userTile.png';
+}?>" class="img-responsive" alt="Profile photo"><br>
             </div>
-
             <div class="col-md-10">
                 <div id="homeBgDiv">
                     <div class="row">
@@ -103,9 +109,11 @@ require('layout/header.php');
                                 </div>
                                 <div class="col-sm-8">
                                     <label class="my-label">
-                                        <?php echo htmlentities($row['firstName']) . " " . 
-                                        htmlentities($row['middleName']) . " " . 
-                                        htmlentities($row['lastName']);?>
+<?php
+echo htmlentities($row['firstName']).' '.
+htmlentities($row['middleName']).' '.
+htmlentities($row['lastName']);
+?>
                                     </label>
                                 </div>
                             </div> <!-- Row ends -->
@@ -127,8 +135,12 @@ require('layout/header.php');
                                 </div>
                                 <div class="col-sm-8">
                                     <label class="my-label">
-                                        <?php if ($row['gender'] == '1') { echo "Male"; } else { 
-                                            echo "Female"; } ?>
+<?php
+if ($row['gender'] == '1') {
+    echo 'Male';
+} else {
+    echo 'Female';
+}?>
                                     </label>
                                 </div>
                             </div> <!-- Row ends -->
@@ -356,4 +368,4 @@ require('layout/header.php');
         </div><br> <!-- end of row -->
     </div> <!-- end of section 1 -->
 </body>
-<?php require_once('layout/footer.php'); ?>
+<?php require_once 'layout/footer.php';

@@ -1,11 +1,12 @@
 <?php
 /**
-* This page serves as the index/login page for the application
+* This page serves as the index/login page for the application.
+*
 * @author Neeraj Kumar Das <neeraj.das@mindfiresolutions.com>
 */
 
 // Turn on error reporting
-ini_set('display_errors','On');
+ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 // start session if not started
@@ -14,26 +15,26 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Store messages from session (if any) to $message
-$message='';
+$message = '';
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
 }
 
 // if a user is already logged in then redirect to home page
 if (isset($_SESSION['id'])) {
-    header("Location: home.php");
+    header('Location: home.php');
 }
 
-function previousValue($item) {
+function previousValue($item)
+{
     if (isset($_POST[$item])) {
         return $_POST[$item];
-    }
-    else {
-        return "";
+    } else {
+        return '';
     }
 }
 
-require('layout/header.php');
+require 'layout/header.php';
 ?>
 
 <body>
@@ -96,4 +97,4 @@ require('layout/header.php');
         </div>
     </section>
 </body>
-<?php require('layout/footer.php'); ?>
+<?php require 'layout/footer.php';

@@ -1,70 +1,68 @@
 <?php
 /**
-* This page serves as the edit page for the user
+* This page serves as the edit page for the user.
+*
 * @author Neeraj Kumar Das <neeraj.das@mindfiresolutions.com>
 */
 
 // Turn on error reporting
-ini_set('display_errors','On');
+ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-require_once('resources/db_connection.php');
-require('process_data.php');
-require('db_functions.php');
+require_once 'resources/db_connection.php';
+require 'process_data.php';
+require 'db_functions.php';
 
 // check if photo's file name is present in the session
 if (!isset($_SESSION['photo'])) {
-    $photo = "";
+    $photo = '';
 }
 $row = array();
 // if the user has submitted the form
 if (isset($_POST['update'])) {
     $userId = $_SESSION['id'];
 
-    $processData = new ProcessData;
+    $processData = new ProcessData();
     $record = $processData->setData($_POST, $_FILES, $connection);
     $row = $record;
     // validate $row
-    $errors = $processData->validateData($row, $connection, "update");
+    $errors = $processData->validateData($row, $connection, 'update');
 
     // if no error exists after validation then update the employee_details of the user
-    if (!$errors) { 
+    if (!$errors) {
         $status = update_record($userId, $connection, $row);
-        if(1 == $status) {
-            $_SESSION['message'] = "Your changes have been saved successfully";
-            header("Location: home.php");
-        }
-        else {
-            $_SESSION['message'] = "Sorry! Unable to save your changes";
-            header("Location: home.php");
+        if (1 == $status) {
+            $_SESSION['message'] = 'Your changes have been saved successfully';
+            header('Location: home.php');
+        } else {
+            $_SESSION['message'] = 'Sorry! Unable to save your changes';
+            header('Location: home.php');
         }
     }
-}
-else {
+} else {
     // populate the fields for editing if user is logged in
     if (isset($_SESSION['id'])) {
         $userId = $_SESSION['id'];
         $row = get_record_for_updation($userId, $connection);
-        // set session to store the name of the photo so that we can have the photo 
+        // set session to store the name of the photo so that we can have the photo
         // during resubmission (in case of validation errors)
         $_SESSION['photo'] = $row['photo'];
-    }
-    else {
-        header("Location: index.php");
+    } else {
+        header('Location: index.php');
     }
 }
 
-function previousValue($item) {
+function previousValue($item)
+{
     global $row;
     if (isset($row[$item])) {
         return htmlentities($row[$item]);
-    }
-    else {
-        return "";
+    } else {
+        return '';
     }
 }
 
-require('layout/header.php');
+require 'layout/header.php';
 ?>
 <body onload="showButton('.submit-button')" data-spy="scroll" data-target=".navbar">
     <nav class="navbar navbar-inverse" data-spy="affix" >
@@ -76,8 +74,8 @@ require('layout/header.php');
                     <span class="icon-bar"></span> 
                     <span class="icon-bar"></span> 
                 </button>
-                <a class="navbar-brand" href="home.php"><?php echo previousValue('firstName') . 
-                " " . previousValue('middleName') . " " . previousValue('lastName');?></a>
+                <a class="navbar-brand" href="home.php"><?php echo previousValue('firstName').
+                ' '.previousValue('middleName').' '.previousValue('lastName');?></a>
                 <a class="navbar-brand" href="home.php">Back</a>
                 <a class="navbar-brand" href="logout.php">Sign out</a>
             </div>
@@ -100,8 +98,8 @@ require('layout/header.php');
                     <?php
                     if (isset($errors)) {
                         echo '<div id="message" class="jumbotron visible-div"><br>';
-                        foreach($errors as $e => $e_value) {
-                            echo '<label class="my-label">' . $e_value . '</label><br>';
+                        foreach ($errors as $e => $e_value) {
+                            echo '<label class="my-label">'.$e_value.'</label><br>';
                         }
                         echo '</div>';
                     }
@@ -119,8 +117,11 @@ require('layout/header.php');
                 <div class="col-md-3">
                     <label class="my-label">Profile photo:</label>
 
-                    <img id="profilePhoto" src="images/<?php if (isset($row['photo'])) { 
-                    echo $row['photo']; } else { echo 'userTile.png'; }?>" 
+                    <img id="profilePhoto" src="images/<?php if (isset($row['photo'])) {
+    echo $row['photo'];
+} else {
+    echo 'userTile.png';
+}?>" 
                     class="img-responsive" alt="Profile photo"><br>
 
                     <input id="uploadBtn" name="photo" type="file" 
@@ -156,20 +157,34 @@ require('layout/header.php');
                         <div class="col-md-4">
                             <label class="my-label">Suffix:</label>
                             <select name="suffix" class="form-control" id="suffix">
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "M.Tech") {echo "selected";} ?> >M.Tech</option>
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "B.Tech") {echo "selected";} ?> >B.Tech</option>
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "M.B.A") {echo "selected";} ?> >M.B.A</option>
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "B.B.A") {echo "selected";} ?> >B.B.A</option>
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "M.C.A") {echo "selected";} ?> >M.C.A</option>
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "B.C.A") {echo "selected";} ?> >B.C.A</option>
-                                <option <?php if(isset($row['suffix']) && 
-                                $row['suffix'] == "Ph.D") {echo "selected";} ?> >Ph.D</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'M.Tech') {
+    echo 'selected';
+} ?> >M.Tech</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'B.Tech') {
+    echo 'selected';
+} ?> >B.Tech</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'M.B.A') {
+    echo 'selected';
+} ?> >M.B.A</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'B.B.A') {
+    echo 'selected';
+} ?> >B.B.A</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'M.C.A') {
+    echo 'selected';
+} ?> >M.C.A</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'B.C.A') {
+    echo 'selected';
+} ?> >B.C.A</option>
+                                <option <?php if (isset($row['suffix']) &&
+                                $row['suffix'] == 'Ph.D') {
+    echo 'selected';
+} ?> >Ph.D</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -186,20 +201,30 @@ require('layout/header.php');
                         <div class="col-md-4">
                             <label class="my-label">Marital Status:</label>
                             <select name="maritalStatus" class="form-control" id="maritalStatus">
-                                <option <?php if(isset($row['maritalStatus']) && 
-                                $row['maritalStatus'] == "Single") {echo "selected";} ?> >
+                                <option <?php if (isset($row['maritalStatus']) &&
+                                $row['maritalStatus'] == 'Single') {
+    echo 'selected';
+} ?> >
                                 Single</option>
-                                <option <?php if(isset($row['maritalStatus']) && 
-                                $row['maritalStatus'] == "Married") {echo "selected";} ?> >
+                                <option <?php if (isset($row['maritalStatus']) &&
+                                $row['maritalStatus'] == 'Married') {
+    echo 'selected';
+} ?> >
                                 Married</option>
-                                <option <?php if(isset($row['maritalStatus']) && 
-                                $row['maritalStatus'] == "Separated") {echo "selected";} ?> >
+                                <option <?php if (isset($row['maritalStatus']) &&
+                                $row['maritalStatus'] == 'Separated') {
+    echo 'selected';
+} ?> >
                                 Separated</option>
-                                <option <?php if(isset($row['maritalStatus']) && 
-                                $row['maritalStatus'] == "Divorced") {echo "selected";} ?> >
+                                <option <?php if (isset($row['maritalStatus']) &&
+                                $row['maritalStatus'] == 'Divorced') {
+    echo 'selected';
+} ?> >
                                 Divorced</option>
-                                <option <?php if(isset($row['maritalStatus']) && 
-                                $row['maritalStatus'] == "Widowed") {echo "selected";} ?> >
+                                <option <?php if (isset($row['maritalStatus']) &&
+                                $row['maritalStatus'] == 'Widowed') {
+    echo 'selected';
+} ?> >
                                 Widowed</option>
                             </select>
                         </div>
@@ -211,17 +236,20 @@ require('layout/header.php');
                                 <label class="my-label">Employment Status:</label>
                                 <select name="employmentStatus" class="form-control" 
                                 id="employmentStatus">
-                                    <option <?php if(isset($row['employmentStatus']) && 
-                                    $row['employmentStatus'] == "Student") {
-                                    echo "selected";} ?> >Student</option>
+                                    <option <?php if (isset($row['employmentStatus']) &&
+                                    $row['employmentStatus'] == 'Student') {
+    echo 'selected';
+} ?> >Student</option>
 
-                                    <option <?php if(isset($row['employmentStatus']) && 
-                                    $row['employmentStatus'] == "Self-employed") {
-                                    echo "selected";} ?> >Self-employed</option>
+                                    <option <?php if (isset($row['employmentStatus']) &&
+                                    $row['employmentStatus'] == 'Self-employed') {
+    echo 'selected';
+} ?> >Self-employed</option>
 
-                                    <option <?php if(isset($row['employmentStatus']) && 
-                                    $row['employmentStatus'] == "Unemployed") {
-                                    echo "selected";} ?> >Unemployed</option>
+                                    <option <?php if (isset($row['employmentStatus']) &&
+                                    $row['employmentStatus'] == 'Unemployed') {
+    echo 'selected';
+} ?> >Unemployed</option>
                                 </select>
                             </div>
                         </div>
@@ -255,12 +283,14 @@ require('layout/header.php');
                                 <label id="genderLabel">Gender:</label>&nbsp;&nbsp;
 
                                 <label><input type="radio" id="male" name="gender" value="1" 
-                                <?php if(isset($row['gender']) && $row['gender'] == "1") {
-                                echo "checked";} ?> >Male</label>&nbsp;&nbsp;
+                                <?php if (isset($row['gender']) && $row['gender'] == '1') {
+    echo 'checked';
+} ?> >Male</label>&nbsp;&nbsp;
 
                                 <label><input type="radio" id="female" name="gender" value="2" 
-                                <?php if(isset($row['gender']) && $row['gender'] == "2") {
-                                echo "checked";} ?> >Female</label>
+                                <?php if (isset($row['gender']) && $row['gender'] == '2') {
+    echo 'checked';
+} ?> >Female</label>
                             </div>
                         </div>
                     </div> <!-- Row ends -->
@@ -405,29 +435,33 @@ require('layout/header.php');
                 <div class="col-sm-3">
                     <div class="checkbox">
                         <label><input name="optionEmail" type="checkbox" value="1" 
-                        <?php if(isset($row['optionEmail']) && $row['optionEmail'] == "1") {
-                        echo "checked";} ?> >Email</label>
+                        <?php if (isset($row['optionEmail']) && $row['optionEmail'] == '1') {
+    echo 'checked';
+} ?> >Email</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox">
                         <label><input name="optionMessage" type="checkbox" value="1" 
-                        <?php if(isset($row['optionMessage']) && $row['optionMessage'] == "1") {
-                        echo "checked";} ?> >Message</label>
+                        <?php if (isset($row['optionMessage']) && $row['optionMessage'] == '1') {
+    echo 'checked';
+} ?> >Message</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox">
                         <label><input name="optionPhone" type="checkbox" value="1" 
-                        <?php if(isset($row['optionPhone']) && $row['optionPhone'] == "1") {
-                        echo "checked";} ?> >Phone call</label>
+                        <?php if (isset($row['optionPhone']) && $row['optionPhone'] == '1') {
+    echo 'checked';
+} ?> >Phone call</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="checkbox">
                         <label><input name="optionAny" type="checkbox" value="1" 
-                        <?php if(isset($row['optionAny']) && $row['optionAny'] == "1") {
-                        echo "checked";} ?> >Any</label>
+                        <?php if (isset($row['optionAny']) && $row['optionAny'] == '1') {
+    echo 'checked';
+} ?> >Any</label>
                     </div>
                 </div>
             </div> <!-- Row ends -->
@@ -453,4 +487,4 @@ require('layout/header.php');
         </div>
     </form>
 </body>
-<?php require_once('layout/footer.php'); ?>
+<?php require_once 'layout/footer.php';

@@ -15,12 +15,13 @@ else {
     $processData = new ProcessData;
     $record = $processData->setData($_POST, $_FILES);
     $row = $record;
+    
     // validate $row
     $errors = $processData->validateData($row, "update");
-    
+   
     // if no error exists after validation then update the employee_details of the user
     if (!$errors) { 
-        $status = update_record($userId, $connection, $row);
+        $status = update_record($userId, $connection, $row);      
         if(1 == $status) {
             $_SESSION['message'] = "Your changes have been saved successfully";
             header("Location: admin_home.php");
@@ -87,6 +88,7 @@ require((dirname(__DIR__)) . '/layout/header.php');
                                 <th>Firstname</th>
                                 <th>Middlename</th>
                                 <th>Lastname</th>
+                                <th>Role</th>
                                 <th>Suffix</th>
                                 <th>Gender</th>
                                 <th>DOB</th>

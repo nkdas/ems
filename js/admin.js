@@ -57,6 +57,13 @@ function editRecord(record) {
 	"<label>First name</label><input name='firstName' type='text' class='form-control' value='" + record['firstName'] + "'>" +
 	"<label>Middle name</label><input name='middleName' type='text' class='form-control' value='" + record['middleName'] + "'>" +
 	"<label>Last name</label><input name='lastName' type='text' class='form-control' value='" + record['lastName'] + "'>" +
+	
+	"<label>Role</label>" +
+	"<select name='role_id' class='form-control' id='role_id'>" +
+	"<option value='5'>Principal</option>" +
+	"<option value='6'>Teacher</option>" +
+	"<option value='7'>Student</option></select>" +
+	
 	"<label>Suffix</label>" +
 	"<select name='suffix' class='form-control' id='suffix'>" +
 	"<option value='M.Tech'>M.Tech</option>" +
@@ -101,6 +108,7 @@ function editRecord(record) {
 
 	$('.modal-body').html($modalContent);
 	$('#myModal').modal('show');
+	$("#role_id option[value='" + record['role_id'] + "']").attr('selected','selected'); 
 	$("#suffix option[value='" + record['suffix'] + "']").attr('selected','selected'); 
 	$("#gender option[value='" + record['gender'] + "']").attr('selected','selected'); 
 	$("#maritalStatus option[value='" + record['maritalStatus'] + "']").attr('selected','selected'); 

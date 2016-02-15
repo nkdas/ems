@@ -3,7 +3,7 @@
 * This page is used to send mails.
 */
 // Turn on error reporting
-ini_set('display_errors','On');
+ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -12,11 +12,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require 'includes/PHPMailerAutoload.php';
 
-function sendMail($mailTo, $mailSubject, $mailBody) {
+function sendMail($mailTo, $mailSubject, $mailBody)
+{
     global $mail;
     // email credentials (change these if you need to use another own email id)
-    $userName = "neerajkumardas7@gmail.com";
-    $password = "@pp1e@pp1e";
+    $userName = 'neerajkumardas7@gmail.com';
+    $password = '@pp1e@pp1e';
 
     // check if a user is signed in
     if (isset($_SESSION['id'])) {
@@ -25,7 +26,7 @@ function sendMail($mailTo, $mailSubject, $mailBody) {
         $mail->SMTPDebug = 1;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-        $mail->Host = "smtp.gmail.com";
+        $mail->Host = 'smtp.gmail.com';
         $mail->Port = 465; // or 587
         $mail->IsHTML(true);
         $mail->Username = $userName;
@@ -35,21 +36,18 @@ function sendMail($mailTo, $mailSubject, $mailBody) {
         $mail->Subject = "$mailSubject";
         $mail->Body = "$mailBody";
         $mail->AddAddress("$mailTo");
-        
+
         // end session that was used to carry email information
         unset($_SESSION['id']);
 
-        // send email and start a session to carry out a message to be given to the user 
+        // send email and start a session to carry out a message to be given to the user
         // about success or failure of the email
-        if(!$mail->Send()) {
+        if (!$mail->Send()) {
             return 'failed';
-        } 
-        else {
+        } else {
             return 'success';
         }
-    }
-    else {
-        header("Location: index.php");
+    } else {
+        header('Location: index.php');
     }
 }
-?>
