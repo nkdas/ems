@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
+require('library/twilio-php/Services/Twilio.php');
 require_once 'resources/db_connection.php';
 require 'db_functions.php';
 require 'process_data.php';
@@ -46,6 +46,17 @@ if (isset($_POST['submit'])) {
         $record['password'] = md5($record['password']);
         $status = insert_record($record, $connection);
         if ('success' == $status) {
+            
+            $account_sid = 'AC547de080c3d48ff71283595dc7acbed0'; 
+            $auth_token = 'c30e80f20ed4350c71295f9d767b68a5'; 
+            $client = new Services_Twilio($account_sid, $auth_token); 
+             
+            $client->account->messages->create(array( 
+                'To' => "+918018770024", 
+                'From' => "+13347210408", 
+                'Body' => "Hi " . $record['firstName'] . "! Thanks for registering to EMS!", 
+            ));
+
             $_SESSION['message'] = 'Registration successful!<br>Please check 
             your email to activate your account.';
         } elseif ('failed' == $status) {
@@ -339,7 +350,7 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                     </div> <!-- Row ends -->
 
                     <div class="row"> <!-- Row starts -->
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="radio">
                                 <label id="genderLabel">Gender:</label>&nbsp;&nbsp;
                                 
@@ -352,6 +363,14 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                                 <?php if (isset($record['gender']) && $record['gender'] == '2') {
     echo 'checked';
 } ?> >Female</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="my-label">Twitter username:</label>
+                            <div class="form-group">
+                                <input name="twitterId" type="text" class="form-control" 
+                                id="twitterId" placeholder="Twitter username" 
+                                value="<?php echo previousValue('twitterId'); ?>">
                             </div>
                         </div>
                     </div> <!-- Row ends -->

@@ -38,6 +38,8 @@ require 'layout/header.php';
 ?>
 
 <body>
+
+
     <section id="section1" class="container-fluid">
         <div class="row">
             <div class="col-md-offset-1 col-md-6">
@@ -77,6 +79,7 @@ require 'layout/header.php';
                                     <br>
                                     <input name="signin" id="signin" type="button" 
                                     class="btn btn-primary" value="Sign in"><br>
+
                                 </div>
                                 <label class="my-label"><a href="forgot_password.php">
                                 Forgot password? Click here!</a></label><br>

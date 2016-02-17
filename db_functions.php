@@ -9,23 +9,24 @@ function insert_record($record, $connection)
     // prepare statement
     $statement = $connection->prepare(
         'INSERT INTO employee_details (userName, password, firstName, middleName, lastName, 
-        suffix, gender, dateOfBirth, maritalStatus, employmentStatus, employer, email, street, 
+        twitterId, suffix, gender, dateOfBirth, maritalStatus, employmentStatus, employer, email, street, 
         city, state, zip, telephone, mobile, fax, officeStreet, officeCity, officeState, 
         officeZip, officeTelephone, officeMobile, officeFax, optionEmail, optionMessage, 
         optionPhone, optionAny, moreAboutYou, photo)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
         ?, ?, ?, ?, ?)'
     );
 
     if ($statement) {
         // bind parameters
         $statement->bind_param(
-            'ssssssisssssssssssssssssssiiiiss',
+            'sssssssisssssssssssssssssssiiiiss',
             $record['userName'],
             $record['password'],
             $record['firstName'],
             $record['middleName'],
             $record['lastName'],
+            $record['twitterId'],
             $record['suffix'],
             $record['gender'],
             $record['dateOfBirth'],
@@ -88,6 +89,7 @@ function insert_record($record, $connection)
 
                 return $status;
             } else {
+
                 return 'Registration failed';
             }
         } else {

@@ -19,6 +19,7 @@ class ProcessData implements DataFunctions
             'firstName' => '',
             'middleName' => '',
             'lastName' => '',
+            'twitterId' => '',
             'role_id' => '',
             'suffix' => '',
             'gender' => '',
