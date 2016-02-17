@@ -181,3 +181,8 @@ input, select, textarea {
 	height:500px;
 	color: #333 !important;
 }
+
+.twitter-timeline {
+	height: 400px !important;
+	border-radius: 0px !important;
+}

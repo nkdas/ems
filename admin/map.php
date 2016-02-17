@@ -25,6 +25,7 @@ require((dirname(__DIR__)) . '/layout/header.php');
                         <li><a href="#">Map</a></li>
                         <li><a href="privilege.php">Settings</a></li>
                         <li><a href="logout.php">Sign out</a></li>
+                        <li><a href="twitter.php">Twitter</a></li>
                     </ul>
                 </div>
             </div>

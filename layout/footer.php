@@ -7,4 +7,5 @@
     <script src="../js/validation.js"></script>
     <script src="../js/login.js"></script>
     <script src="../js/admin.js"></script>
+    <script src="../js/twitter.js"></script>
 </html>

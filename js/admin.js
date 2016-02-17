@@ -270,3 +270,17 @@ function addResource() {
 		},
 	});
 }
+
+function viewTwitter() {
+	var twitterId = $('#userList').val();
+
+	var tweeterData = '<a class="twitter-timeline"' +
+					  'data-widget-id="600720083413962752"' +
+					  'href="https://twitter.com/' + twitterId +
+					  '" data-screen-name="'+ twitterId +'">' +
+				'Tweets by @' + twitterId +
+				'</a>';
+
+				$('#twitterDiv').html(tweeterData);
+				twttr.widgets.load();
+}

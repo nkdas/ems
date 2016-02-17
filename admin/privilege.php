@@ -30,6 +30,7 @@ require((dirname(__DIR__)) . '/layout/header.php');
                         <li><a href="map.php">Map</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="logout.php">Sign out</a></li>
+                        <li><a href="twitter.php">Twitter</a></li>
                     </ul>
                 </div>
             </div>
