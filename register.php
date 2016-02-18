@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
+require('library/twilio-php/Services/Twilio.php');
 require_once 'resources/db_connection.php';
 require 'db_functions.php';
 require 'process_data.php';
@@ -46,6 +46,17 @@ if (isset($_POST['submit'])) {
         $record['password'] = md5($record['password']);
         $status = insert_record($record, $connection);
         if ('success' == $status) {
+            
+            $account_sid = 'AC547de080c3d48ff71283595dc7acbed0';
+            $auth_token = 'c30e80f20ed4350c71295f9d767b68a5';
+            $client = new Services_Twilio($account_sid, $auth_token);
+             
+            $client->account->messages->create(array(
+                'To' => "+918018770024",
+                'From' => "+13347210408",
+                'Body' => "Hi " . $record['firstName'] . "! Thanks for registering to EMS!",
+            ));
+
             $_SESSION['message'] = 'Registration successful!<br>Please check 
             your email to activate your account.';
         } elseif ('failed' == $status) {
@@ -124,7 +135,7 @@ if (isset($errors)) {
                 <div class="col-md-3">
                     <label class="my-label">Profile photo:</label>
 
-                    <img id="profilePhoto" src="images/<?php 
+                    <img id="profilePhoto" src="images/<?php
                     if (isset($record['photo'])) {
                         echo $record['photo'];
                     } else {
@@ -201,53 +212,53 @@ if (isset($errors)) {
                             <label class="my-label">Suffix:</label>
                             <select name="suffix" class="form-control" id="suffix">
                                 <option
-<?php
-if (isset($record['suffix']) && $record['suffix'] == 'M.Tech') {
-    echo 'selected';
-}
-?> 
->M.Tech</option>
-<option 
-<?php 
-if (isset($record['suffix']) && $record['suffix'] == 'B.Tech') {
-    echo 'selected';
-}
-?> 
->B.Tech</option>
-<option 
-<?php 
-if (isset($record['suffix']) && $record['suffix'] == 'M.B.A') {
-    echo 'selected';
-}
-?> 
->M.B.A</option>
-<option 
-<?php 
-if (isset($record['suffix']) && $record['suffix'] == 'B.B.A') {
-    echo 'selected';
-}
-?> 
->B.B.A</option>
-<option 
-<?php if (isset($record['suffix']) && $record['suffix'] == 'M.C.A') {
-    echo 'selected';
-}
-?> 
->M.C.A</option>
-<option 
-<?php 
-if (isset($record['suffix']) && $record['suffix'] == 'B.C.A') {
-    echo 'selected';
-}
-?> 
->B.C.A</option>
-<option 
-<?php 
-if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
-    echo 'selected';
-}
-?> 
->Ph.D</option>
+                            <?php
+                            if (isset($record['suffix']) && $record['suffix'] == 'M.Tech') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >M.Tech</option>
+                            <option 
+                            <?php
+                            if (isset($record['suffix']) && $record['suffix'] == 'B.Tech') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >B.Tech</option>
+                            <option 
+                            <?php
+                            if (isset($record['suffix']) && $record['suffix'] == 'M.B.A') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >M.B.A</option>
+                            <option 
+                            <?php
+                            if (isset($record['suffix']) && $record['suffix'] == 'B.B.A') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >B.B.A</option>
+                            <option 
+                            <?php if (isset($record['suffix']) && $record['suffix'] == 'M.C.A') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >M.C.A</option>
+                            <option 
+                            <?php
+                            if (isset($record['suffix']) && $record['suffix'] == 'B.C.A') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >B.C.A</option>
+                            <option 
+                            <?php
+                            if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
+                                echo 'selected';
+                            }
+                            ?> 
+                            >Ph.D</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -266,28 +277,28 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                             <select name="maritalStatus" class="form-control" id="maritalStatus">
                                 <option <?php if (isset($record['maritalStatus']) &&
                                 $record['maritalStatus'] == 'Single') {
-    echo 'selected';
-} ?> >
+                                    echo 'selected';
+                                } ?> >
                                 Single</option>
                                 <option <?php if (isset($record['maritalStatus']) &&
                                 $record['maritalStatus'] == 'Married') {
-    echo 'selected';
-} ?> >
+                                    echo 'selected';
+                                } ?> >
                                 Married</option>
                                 <option <?php if (isset($record['maritalStatus']) &&
                                 $record['maritalStatus'] == 'Separated') {
-    echo 'selected';
-} ?> >
+                                    echo 'selected';
+                                } ?> >
                                 Separated</option>
                                 <option <?php if (isset($record['maritalStatus']) &&
                                 $record['maritalStatus'] == 'Divorced') {
-    echo 'selected';
-} ?> >
+                                    echo 'selected';
+                                } ?> >
                                 Divorced</option>
                                 <option <?php if (isset($record['maritalStatus']) &&
                                 $record['maritalStatus'] == 'Widowed') {
-    echo 'selected';
-} ?> >
+                                    echo 'selected';
+                                } ?> >
                                 Widowed</option>
                             </select>
                         </div>
@@ -301,16 +312,16 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                                 id="employmentStatus">
                                     <option <?php if (isset($record['employmentStatus']) &&
                                     $record['employmentStatus'] == 'Student') {
-    echo 'selected';
-} ?> >Student</option>
+                                        echo 'selected';
+                                    } ?> >Student</option>
                                     <option <?php if (isset($record['employmentStatus']) &&
                                     $record['employmentStatus'] == 'Self-employed') {
-    echo 'selected';
-} ?> >Self-employed</option>
+                                        echo 'selected';
+                                    } ?> >Self-employed</option>
                                     <option <?php if (isset($record['employmentStatus']) &&
                                     $record['employmentStatus'] == 'Unemployed') {
-    echo 'selected';
-} ?> >Unemployed</option>
+                                        echo 'selected';
+                                    } ?> >Unemployed</option>
                                 </select>
                             </div>
                         </div>
@@ -339,19 +350,27 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                     </div> <!-- Row ends -->
 
                     <div class="row"> <!-- Row starts -->
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="radio">
                                 <label id="genderLabel">Gender:</label>&nbsp;&nbsp;
                                 
                                 <label><input id="male" type="radio" name="gender" value="1" 
                                 <?php if (isset($record['gender']) && $record['gender'] == '1') {
-    echo 'checked';
-} ?> >Male</label>&nbsp;&nbsp;
+                                    echo 'checked';
+                                } ?> >Male</label>&nbsp;&nbsp;
                                 
                                 <label><input id="female" type="radio" name="gender" value="2" 
                                 <?php if (isset($record['gender']) && $record['gender'] == '2') {
-    echo 'checked';
-} ?> >Female</label>
+                                    echo 'checked';
+                                } ?> >Female</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="my-label">Twitter username:</label>
+                            <div class="form-group">
+                                <input name="twitterId" type="text" class="form-control" 
+                                id="twitterId" placeholder="Twitter username" 
+                                value="<?php echo previousValue('twitterId'); ?>">
                             </div>
                         </div>
                     </div> <!-- Row ends -->
@@ -497,8 +516,8 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                     <div class="checkbox">
                         <label><input name="optionEmail" type="checkbox" value="1" 
                         <?php if (isset($record['optionEmail']) && $record['optionEmail'] == '1') {
-    echo 'checked';
-} ?> >Email</label>
+                            echo 'checked';
+                        } ?> >Email</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -506,8 +525,8 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                         <label><input name="optionMessage" type="checkbox" value="1" 
                         <?php if (isset($record['optionMessage']) &&
                         $record['optionMessage'] == '1') {
-    echo 'checked';
-} ?> >Message</label>
+                            echo 'checked';
+                        } ?> >Message</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -515,8 +534,8 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                         <label><input name="optionPhone" type="checkbox" value="1" 
                         <?php if (isset($record['optionPhone']) &&
                         $record['optionPhone'] == '1') {
-    echo 'checked';
-} ?> >
+                            echo 'checked';
+                        } ?> >
                         Phone call</label>
                     </div>
                 </div>
@@ -525,8 +544,8 @@ if (isset($record['suffix']) && $record['suffix'] == 'Ph.D') {
                         <label><input name="optionAny" type="checkbox" value="1" 
                         <?php if (isset($record['optionAny']) &&
                         $record['optionAny'] == '1') {
-    echo 'checked';
-} ?> >Any</label>
+                            echo 'checked';
+                        } ?> >Any</label>
                     </div>
                 </div>
             </div> <!-- Row ends -->

@@ -1,5 +1,4 @@
 <?php
-//namespace acl;
 
 /**
  * This page checks privileges for a user.

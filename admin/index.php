@@ -1,14 +1,14 @@
 <?php
-require_once((dirname(__DIR__)) . '/resources/db_connection.php');
+require_once(dirname(__DIR__)).'/resources/db_connection.php';
 
-ini_set('display_errors','On');
+ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-if(isset($_SESSION['pk_admin'])) {
-    header("Location: admin_home.php");
+if (isset($_SESSION['pk_admin'])) {
+    header('Location: admin_home.php');
 }
 
-require((dirname(__DIR__)) . '/layout/header.php');
+require(dirname(__DIR__)).'/layout/header.php';
 ?>
 <body>
     <div id="section1" class="container-fluid">
@@ -20,14 +20,16 @@ require((dirname(__DIR__)) . '/layout/header.php');
                         <div class="form-group">
                             <label class="my-label">Username</label>
                             <input name="userName" type="text" class="form-control" id="userName" 
-                            value="<?php if (isset($_POST['userName'])) { 
-                            echo $_POST['userName']; } ?>"><br>
+                            value="<?php if (isset($_POST['userName'])) {
+                                echo $_POST['userName'];
+                            } ?>"><br>
 
                             <label class="my-label">Password</label>
                             <input name="password" type="password" class="form-control" 
                             id="password" 
-                            value="<?php if (isset($_POST['password'])) { 
-                            echo $_POST['password']; } ?>"><br>
+                            value="<?php if (isset($_POST['password'])) {
+                                echo $_POST['password'];
+                            } ?>"><br>
 
                             <input name="signin" id="signin" type="button" 
                             class="btn btn-primary admin-button" value="Sign in"><br>
@@ -45,4 +47,4 @@ require((dirname(__DIR__)) . '/layout/header.php');
         </div>
     </div>
 </body>
-<?php require((dirname(__DIR__)) . '/layout/footer.php');?>
+<?php require(dirname(__DIR__)).'/layout/footer.php';?>

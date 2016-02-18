@@ -1,12 +1,12 @@
 <?php
-require_once((dirname(__DIR__)) . '/resources/db_connection.php');
+
+require_once(dirname(__DIR__)).'/resources/db_connection.php';
 
 if (isset($_SESSION['pk_admin'])) {
-
-    $output = array("aaData" => array());
-    $query = mysqli_query($connection, "SELECT firstName, middleName, lastName, email, street, 
+    $output = array('aaData' => array());
+    $query = mysqli_query($connection, 'SELECT firstName, middleName, lastName, email, street, 
         city, state, zip
-        FROM employee_details");
+        FROM employee_details');
 
     if ($query) {
         $row = array();
@@ -14,17 +14,16 @@ if (isset($_SESSION['pk_admin'])) {
         $email = array();
         $i = 0;
         while ($record = mysqli_fetch_assoc($query)) {
-            $address = $record['street'] . "," . $record['city'] . "," . $record['state'] . "," . 
+            $address = $record['street'].','.$record['city'].','.$record['state'].','.
             $record['zip'];
 
-            $name[$i] = $record['firstName'] . " " . $record['middleName'] . " " . 
+            $name[$i] = $record['firstName'].' '.$record['middleName'].' '.
             $record['lastName'];
             $email[$i] = $record['email'];
             $row[$i] = $address;
-            $i++;
+            ++$i;
         }
 
-       echo json_encode( array("address" => $row, "employeeName" => $name, "email" => $email) );
+        echo json_encode(array('address' => $row, 'employeeName' => $name, 'email' => $email));
     }
 }
-?>

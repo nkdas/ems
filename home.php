@@ -93,10 +93,10 @@ if (isset($message)) {
         <div class="row">
             <div class="col-md-2">
                 <img id="profilePhoto" src="images/<?php if ($row['photo']) {
-    echo $row['photo'];
-} else {
-    echo 'userTile.png';
-}?>" class="img-responsive" alt="Profile photo"><br>
+                    echo $row['photo'];
+                } else {
+                    echo 'userTile.png';
+                }?>" class="img-responsive" alt="Profile photo"><br>
             </div>
             <div class="col-md-10">
                 <div id="homeBgDiv">

@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if (!isset($_SESSION['pk_admin'])) {
     header('Location: index.php');
 }
-require((dirname(__DIR__)) . '/layout/header.php');
+require(dirname(__DIR__)).'/layout/header.php';
 ?>
 <body onload="displayMap()">
     <nav class="navbar navbar-inverse" data-spy="affix">
@@ -25,6 +25,7 @@ require((dirname(__DIR__)) . '/layout/header.php');
                         <li><a href="#">Map</a></li>
                         <li><a href="privilege.php">Settings</a></li>
                         <li><a href="logout.php">Sign out</a></li>
+                        <li><a href="twitter.php">Twitter</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,4 +39,4 @@ require((dirname(__DIR__)) . '/layout/header.php');
         </div>
     </div>
 </body>
-<?php require((dirname(__DIR__)) . '/layout/footer.php');?>
+<?php require(dirname(__DIR__)).'/layout/footer.php';?>
