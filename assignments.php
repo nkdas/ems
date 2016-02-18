@@ -1,18 +1,18 @@
-<?php 
+<?php
 // Turn on error reporting
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-require_once('resources/db_connection.php');
-require('acl.php');
+require_once 'resources/db_connection.php';
+require 'acl.php';
 
 if (isset($_SESSION['id'])) {
-    $acl = new acl;
+    $acl = new acl();
     $privilege = $acl->checkPrivilege($_SESSION['id'], 5);
 } else {
-    header("Location: index.php");
+    header('Location: index.php');
 }
-require('layout/header.php');
+require 'layout/header.php';
 ?>
 <body>
     <nav class="navbar navbar-inverse" data-spy="affix">
@@ -92,4 +92,4 @@ require('layout/header.php');
         </div>        
     </div>
 </body>
-<?php require('layout/footer.php');
+<?php require 'layout/footer.php';

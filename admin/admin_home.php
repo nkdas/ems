@@ -1,40 +1,36 @@
 <?php
-require_once((dirname(__DIR__)) . '/resources/db_connection.php');
-require((dirname(__DIR__)) . '/db_functions.php');
-require((dirname(__DIR__)) . '/process_data.php');
+require_once(dirname(__DIR__)).'/resources/db_connection.php';
+require(dirname(__DIR__)).'/db_functions.php';
+require(dirname(__DIR__)).'/process_data.php';
 
 if (!isset($_SESSION['pk_admin'])) {
-    header("Location: index.php");
-}
-else {
-
+    header('Location: index.php');
+} else {
     if (isset($_POST['submit'])) {
-    $userId = $_POST['id'];
-    $_SESSION['userName'] = $_POST['userName'];
-    
-    $processData = new ProcessData;
-    $record = $processData->setData($_POST, $_FILES);
-    $row = $record;
-    
-    // validate $row
-    $errors = $processData->validateData($row, "update");
-   
-    // if no error exists after validation then update the employee_details of the user
-    if (!$errors) { 
-        $status = update_record($userId, $connection, $row);      
-        if(1 == $status) {
-            $_SESSION['message'] = "Your changes have been saved successfully";
-            header("Location: admin_home.php");
-        }
-        else {
-            $_SESSION['message'] = "Sorry! Unable to save your changes";
-            header("Location: admin_home.php");
+        $userId = $_POST['id'];
+        $_SESSION['userName'] = $_POST['userName'];
+
+        $processData = new ProcessData();
+        $record = $processData->setData($_POST, $_FILES);
+        $row = $record;
+
+        // validate $row
+        $errors = $processData->validateData($row, 'update');
+
+        // if no error exists after validation then update the employee_details of the user
+        if (!$errors) {
+            $status = update_record($userId, $connection, $row);
+            if (1 == $status) {
+                $_SESSION['message'] = 'Your changes have been saved successfully';
+                header('Location: admin_home.php');
+            } else {
+                $_SESSION['message'] = 'Sorry! Unable to save your changes';
+                header('Location: admin_home.php');
+            }
         }
     }
 }
-
-}
-require((dirname(__DIR__)) . '/layout/header.php');
+require(dirname(__DIR__)).'/layout/header.php';
 ?>
 <body>
     <nav class="navbar navbar-inverse" data-spy="affix">
@@ -114,4 +110,4 @@ require((dirname(__DIR__)) . '/layout/header.php');
         </div>
     </div>
 </body>
-<?php require((dirname(__DIR__)) . '/layout/footer.php');?>
+<?php require(dirname(__DIR__)).'/layout/footer.php';?>

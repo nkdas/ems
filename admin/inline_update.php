@@ -1,5 +1,6 @@
 <?php
-require_once((dirname(__DIR__)) . '/resources/db_connection.php');
+
+require_once(dirname(__DIR__)).'/resources/db_connection.php';
 if (isset($_SESSION['pk_admin'])) {
     if (isset($_POST['id']) && isset($_POST['element']) && isset($_POST['value'])) {
         $id = $_POST['id'];
@@ -11,17 +12,14 @@ if (isset($_SESSION['pk_admin'])) {
         WHERE id = $id";
         $sql = mysqli_query($connection, $query);
 
-        if($sql) {
+        if ($sql) {
             $status = array('status' => 'success');
             echo json_encode($status);
-        }
-        else {
+        } else {
             $status = array('status' => 'failed');
             echo json_encode($status);
         }
     }
+} else {
+    header('Location: index.php');
 }
-else {
-    header("Location: index.php");
-}
-?>

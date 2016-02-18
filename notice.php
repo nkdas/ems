@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Turn on error reporting
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
@@ -44,59 +44,51 @@ require 'layout/header.php';
     <div id="sectionAdmin" class="container-fluid">
         <h2>Notice</h2>
         <ul class="nav nav-tabs">
-<?php
-if (in_array(1, $privilege) || in_array(5, $privilege)) {
-    echo '<li><a data-toggle="tab" href="#add">Add</a></li>';
-}
-if (in_array(2, $privilege) || in_array(5, $privilege)) {
-    echo '<li><a data-toggle="tab" href="#delete">Delete</a></li>';
-}
-if (in_array(3, $privilege) || in_array(5, $privilege)) {
-    echo '<li><a data-toggle="tab" href="#view">View</a></li>';
-}
-if (in_array(4, $privilege) || in_array(5, $privilege)) {
-    echo '<li><a data-toggle="tab" href="#edit">Edit</a></li>';
-}
-?>
+            <?php
+            if (in_array(1, $privilege) || in_array(5, $privilege)) {
+                echo '<li><a data-toggle="tab" href="#add">Add</a></li>';
+            }
+            if (in_array(2, $privilege) || in_array(5, $privilege)) {
+                echo '<li><a data-toggle="tab" href="#delete">Delete</a></li>';
+            }
+            if (in_array(3, $privilege) || in_array(5, $privilege)) {
+                echo '<li><a data-toggle="tab" href="#view">View</a></li>';
+            }
+            if (in_array(4, $privilege) || in_array(5, $privilege)) {
+                echo '<li><a data-toggle="tab" href="#edit">Edit</a></li>';
+            }
+            ?>
         </ul>
-<?php
-if (empty($privilege)) {
-    echo '<h2>Sorry You are not authorized to access this page </h2>';
-}
-?>
+        <?php
+        if (empty($privilege)) {
+            echo '<h2>Sorry You are not authorized to access this page </h2>';
+        }
+        ?>
 
         <div class="tab-content">
-    <?php if (in_array(1, $privilege) || in_array(5, $privilege)) {
-    ?>
+            <?php if (in_array(1, $privilege) || in_array(5, $privilege)) { ?>
             <div id="add" class="tab-pane fade">
                 <h3>Add</h3>
             </div>
-            <?php 
-} ?>
+            <?php } ?>
 
-            <?php if (in_array(2, $privilege) || in_array(5, $privilege)) {
-    ?>
+            <?php if (in_array(2, $privilege) || in_array(5, $privilege)) { ?>
             <div id="delete" class="tab-pane fade">
                 <h3>Delete</h3>
             </div>
-            <?php 
-} ?>
+            <?php } ?>
 
-            <?php if (in_array(3, $privilege) || in_array(5, $privilege)) {
-    ?>
+            <?php if (in_array(3, $privilege) || in_array(5, $privilege)) { ?>
             <div id="view" class="tab-pane fade">
                 <h3>View</h3>
             </div>
-            <?php 
-} ?>
+            <?php } ?>
             
-            <?php if (in_array(4, $privilege) || in_array(5, $privilege)) {
-    ?>
+            <?php if (in_array(4, $privilege) || in_array(5, $privilege)) { ?>
             <div id="edit" class="tab-pane fade">
                 <h3>Edit</h3>
             </div>
-            <?php 
-} ?>
+            <?php } ?>
         </div>        
     </div>
 </body>

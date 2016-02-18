@@ -181,8 +181,7 @@ require 'layout/header.php';
                 </div>
             </div>
         </nav>
-        <?php 
-} ?>
+        <?php } ?>
         <section id="section1" class="container-fluid">
             <div class="row">
                 <div class="col-md-1">
@@ -211,13 +210,11 @@ require 'layout/header.php';
                             <div class="col-md-12"> 
                                 <div id="loginForm" class="jumbotron">
                                     <div class="form-group">
-                                        <?php if (!isset($_SESSION['key'])) {
-    ?>
+                                        <?php if (!isset($_SESSION['key'])) { ?>
                                         <label class="my-label">Old Password</label>
                                         <input name="password" type="password" class="form-control" 
                                         id="password" ><br>
-                                        <?php 
-} ?>
+                                        <?php } ?>
                                         <label class="my-label">New Password</label>
                                         <input name="newPassword" type="password" 
                                         class="form-control" 

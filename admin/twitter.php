@@ -1,19 +1,17 @@
 <?php
-require_once((dirname(__DIR__)) . '/resources/db_connection.php');
+require_once(dirname(__DIR__)).'/resources/db_connection.php';
 if (!isset($_SESSION['pk_admin'])) {
-    header("Location: index.php");
-}
-else {
-    $query = mysqli_query($connection, "SELECT firstName, twitterId
-        FROM employee_details");
+    header('Location: index.php');
+} else {
+    $query = mysqli_query($connection, 'SELECT firstName, twitterId
+        FROM employee_details');
     $record = array();
     if ($query) {
         while ($row = mysqli_fetch_assoc($query)) {
-            array_push($record, $row['firstName'] . ' ' . $row['twitterId']);
+            array_push($record, $row['firstName'].' '.$row['twitterId']);
         }
     }
-
-    require((dirname(__DIR__)) . '/layout/header.php');
+    require(dirname(__DIR__)).'/layout/header.php';
 }
 ?>
 <body onload="viewTwitter();">
@@ -51,8 +49,8 @@ else {
                 <?php
                 echo '<select id="userList" name="userList" onchange="viewTwitter()" class="form-control">';
                 foreach ($record as $key => $value) {
-                    $data = explode(" ", $value);
-                    echo '<option value="' . $data[1] . '">' . $data[0] . '</option>';
+                    $data = explode(' ', $value);
+                    echo '<option value="'.$data[1].'">'.$data[0].'</option>';
                 }
                 echo '</select>';
                 ?>
@@ -63,4 +61,4 @@ else {
         </div>
     </div>
 </body>
-<?php require((dirname(__DIR__)) . '/layout/footer.php');?>
+<?php require(dirname(__DIR__)).'/layout/footer.php';?>
