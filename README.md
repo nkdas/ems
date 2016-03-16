@@ -14,7 +14,7 @@ and provide your credentials (email id and password) in mail.php
 
 ------------------------------
 
- DB Design Guidelines for **RapidFunnel**
+#DB Design Guidelines for **Rapid Funnel**
 
 Created By: Rajkumar and Neeraj
 Date: 16th March 2016
@@ -23,7 +23,7 @@ This document is applicable only for **RapidFunnel** application.
 
 Storage Engine:
 - Choose storage engine smartly based on the data in tables.
-[storage Engines](https://dev.mysql.com/doc/refman/5.0/en/storage-engines.html)
+[Storage Engines](https://dev.mysql.com/doc/refman/5.0/en/storage-engines.html)
 
 
 Tables:
