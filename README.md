@@ -253,7 +253,7 @@ email -> primaryEmail
      }
  }
 ```
-**Get contact details:**
+**Get contact details:**  
   Contacts having multiple phone number(mobile) the first number  
   will be returned as phone number
 ```text
@@ -288,7 +288,7 @@ email -> primaryEmail
      }
  }
 ```
-**update contact:**
+**update contact:**  
   Contacts having multiple phone number(mobile),  
   the first number will be updated through mobile APP  
 
@@ -327,8 +327,8 @@ email -> primaryEmail
     }
  }
 ```
- Delete contact:
- ---------------
+**Delete contact:**  
+```text
  Url: http://local.rapid-funnel.com/api/account-contact/delete-contact
  Method: POST
  Param: accessToken, contactId, userId
@@ -340,12 +340,11 @@ email -> primaryEmail
      }
     }
  }
-
+```
  ----------- End of Old API request and response for contact -----------
 
-
- Get Campaigns:
- ---------------
+**Get Campaigns:**  
+```text
  Url: http://local.rapid-funnel.com/api/account-campaign/get-campaigns
  Method: POST
  Param: accessToken, userId
@@ -368,9 +367,9 @@ email -> primaryEmail
     }
   }
  }
-
- Get Campaign Details:
- ---------------------
+```
+**Get Campaign Details:**  
+```text
  Url: http://local.rapid-funnel.com/api/account-campaign/get-campaign-details
  Method: POST
  Param: accessToken, userId, campaignId
@@ -391,9 +390,10 @@ email -> primaryEmail
         }
     }
  }
+```
 
-Assign Contact To Campaign
----------------------------
+###Assign Contact To Campaign
+```text
 Url: http://local.rapid-funnel.com/api/account-campaign/assign-contact-to-campaign
 Method: POST
 Param: accessToken, userId, campaignId, contactId
@@ -404,9 +404,9 @@ Response:
         "message":"Contact has been assign successfully"
     }
 }}
-
-validate user registration
---------------------------
+```
+###validate user registration
+```text
 Url: http://local.rapid-funnel.com/api/account-campaign/validate-user-registration
 Method: POST
 Param: email, registrationCode
@@ -417,9 +417,9 @@ Response:
         "message":"User's details validated successfully"
     }
 }}
-
-get new password
-----------------
+```
+###get new password
+```text
 Url: http://local.rapid-funnel.com/api/account-campaign/get-new-password
 Method: POST
 Param: email, registrationCode, password, confirmPassword
@@ -430,9 +430,9 @@ Response:
         "message":"Password created successfully"
     }
 }}
-
-Get Branding Details
---------------------
+```
+###Get Branding Details
+```text
 Url: http://local.rapid-funnel.com/api/account-branding/get-details
 Method: POST
 Param: accessToken, userId
@@ -451,9 +451,9 @@ Response:
         "dashboardLogoUrl":"http:\/\/local.rapid-funnel.com\/uploads\/branding\/account\/dashboardLogo_1409830112.jpg"
     }
 }}
-
-To Get Incentive listing for an user by running status (active or inactive)
-----------------------------------------------------
+```
+###To Get Incentive listing for an user by running status (active or inactive)
+```text
 Url: <Site-Url>/api/account-award/get-incentives
 Method: POST
 Param: accessToken, userId, runningStatus(1-current, 0- for past)
@@ -485,9 +485,9 @@ Response: It will list all incentives based on running status.
         }
     ]}
 }
-
-To Get Current Awards(Incentive) Details for an user
-----------------------------------------------------
+```
+###To Get Current Awards(Incentive) Details for an user
+```text
 Url: <Site-Url>/api/account-award/get-current-award-detail
 Method: POST
 Param: accessToken, userId, incentiveId
@@ -516,8 +516,9 @@ Award for most leads:
         }
     }
 }
-Award per lead:
----------------------
+```
+###Award per lead:
+```text
 {"response":{
     "status":"true",
     "content":{
@@ -537,8 +538,9 @@ Award per lead:
         }
     }
 }
-Award For Achieving Goal
-------------------------
+```
+###Award For Achieving Goal
+```text
 {"response":{
     "status":"true",
     "content":{
@@ -559,16 +561,17 @@ Award For Achieving Goal
         }
     }
 }
-If Error:
----------
+```
+###If Error:
+```text
 {"response":{
     "status":"false",
     "errorMessage":"ERROR MESSAGE"
     }
 }
-
-To Get Past Awards(Incentive) Details for an user
-----------------------------------------------------
+```
+###To Get Past Awards(Incentive) Details for an user
+```text
 Url: <Site-Url>/api/account-award/get-past-award-detail
 Method: POST
 Param: accessToken, userId, incentiveId
@@ -589,9 +592,9 @@ Response:
         }
     }
 }
-
-To Get generated leads in a date range of an user
-----------------------------------------------------
+```
+###To Get generated leads in a date range of an user
+```text
 Url: <Site-Url>/api/account-award/get-generated-leads-by-date-range
 Method: POST
 Param: accessToken, userId, startDate, endDate
@@ -603,9 +606,9 @@ Response:
         }
     }
 }
-
-To Get resources of an user
-----------------------------------------------------
+```
+###To Get resources of a user
+```text
 Url: <Site-Url>/api/account-resource/get-resource
 Method: POST
 Param: accessToken, userId
@@ -633,16 +636,16 @@ Response:
 	}
     ]}
 }
-
+```
 --------- New API request and response for contacts ----------------
 
-Add Contact:
- Phone: Mobile, Home, Work, Other (There can be multiple of any of these types)
- phone -> Mobile
- Email: Primary, Home, Work, Other (There can be only one "Primary" and that is
- where Campaigns and Broadcasts will go for that Contact)
- email -> primaryEmail
- ------------
+**Add Contact:**  
+Phone: Mobile, Home, Work, Other (There can be multiple of any of these types)  
+phone -> Mobile  
+Email: Primary, Home, Work, Other (There can be only one "Primary" and that is  
+where Campaigns and Broadcasts will go for that Contact)  
+email -> primaryEmail  
+```text
  Url:http://local.rapid-funnel.com/api/account-contact-new/add-contact
  Method: POST
  Param: {
@@ -681,9 +684,9 @@ Add Contact:
         }
     }
  }
-
-Add Contact Notes:
--------------------
+```
+###Add Contact Notes:
+```text
 Url:http://local.rapid-funnel.com/api/account-contact-new/add-contact-notes
 Method: POST
  Param: {
@@ -712,9 +715,9 @@ Method: POST
         }
     }
  }
-
-Get Contact:
- ------------
+```
+###Get Contact:
+```text
  Url:http://local.rapid-funnel.com/api/account-contact-new/get-contact
  Method: POST
  Param: accessToken, userId
@@ -768,9 +771,9 @@ Get Contact:
          }
      }
  }
-
- Get Contact Notes:
-  ------------
+```
+###Get Contact Notes:
+```text
   Url:http://local.rapid-funnel.com/api/account-contact-new/get-contact-notes
   Method: POST
   Param: accessToken, userId
@@ -796,9 +799,9 @@ Get Contact:
          }
      }
  }
-
- Get contact details:
- --------------------
+```
+ ###Get contact details:
+```text
  Url: http://local.rapid-funnel.com/api/account-contact-new/get-contact-details
  Method: POST
  Param: accessToken, contactId, userId
@@ -828,9 +831,9 @@ Get Contact:
          }
      }
  }
-
- Get Contact Specific Notes:
- --------------------
+```
+###Get Contact Specific Notes:
+```text
  Url: http://local.rapid-funnel.com/api/account-contact-new/get-contact-note-details
  Method: POST
  Param: accessToken, contactId, userId
@@ -854,9 +857,9 @@ Get Contact:
         }
     }
 }
-
- update contact:
- ---------------
+```
+###update contact:
+```text
  Url: http://local.rapid-funnel.com/api/account-contact-new/update-contact
  Method: POST
  Param: {
@@ -883,9 +886,9 @@ Get Contact:
          }
      }
   }
-
-  update contact notes:
-  ---------------
+```
+###update contact notes:
+```text
   Url: http://local.rapid-funnel.com/api/account-contact-new/update-contact-notes
   Method: POST
   Param: {
@@ -918,10 +921,9 @@ Response:
         }
     }
 }
-
-
- Delete contact:
- ---------------
+```
+###Delete contact:
+```text
  Url: http://local.rapid-funnel.com/api/account-contact-new/delete-contact
  Method: POST
  Param: accessToken, contactId, userId
@@ -933,9 +935,9 @@ Response:
       }
      }
   }
-
-  Delete contact notes:
-  ---------------
+```
+###Delete contact notes:
+```text
   Url: http://local.rapid-funnel.com/api/account-contact-new/delete-contact-notes
   Method: POST
   Param: {
@@ -957,5 +959,5 @@ Response:
       }
      }
   }
-
+```
  ---------- End of New API request and response -------------------
