@@ -23,8 +23,8 @@ This document is applicable only for **Rapid Funnel** application.
 
 ##PHP File Formatting
 **General:**
-- For files that contain only PHP code, the closing tag **("?>")** is never permitted. It is not required by PHP, and omitting it prevents the accidental injection of trailing white space into the response. 
-Note: Important: Inclusion of arbitrary binary data as permitted by __HALT_COMPILER() is prohibited from PHP files in the Zend Framework project or files derived from them. Use of this feature is only permitted for some installation scripts. 
+- For files that contain only PHP code, the closing tag **?>** is never permitted. It is not required by PHP, and omitting it prevents the accidental injection of trailing white space into the response.  
+**Note:** Important: Inclusion of arbitrary binary data as permitted by __HALT_COMPILER() is prohibited from PHP files in the Zend Framework project or files derived from them. Use of this feature is only permitted for some installation scripts. 
 
 
 **Indentation:**
