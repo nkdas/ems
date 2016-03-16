@@ -9,7 +9,8 @@ If you need to use your own email id (should be gmail) then  make sure to turn o
 About allowing less secure apps - https://support.google.com/accounts/answer/6010255?hl=en
 link to turn on 'less secure apps' - http://www.google.com/settings/security/lesssecureapps
 
-and provide your credentials (email id and password) in mail.php
+and provide your credentials (email id and password) in mail.php  
+
 ----
 
 ===========================
