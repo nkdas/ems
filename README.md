@@ -70,10 +70,11 @@ Response:
     }
 }
 ```
-"For accountInfo data":
-accountLevel might have two values
+"For accountInfo data":  
+accountLevel might have two values  
 - "free" (Their top level account is of free type)
-- or "paid" (account can be of type business or enterprise etc...)
+- "paid" (account can be of type business or enterprise etc...)  
+
 If the accountLevel is of type paid then there will be "ignoreUserPayment" in response
 "ignoreUserPayment" : it means, the user's payment ignored, this can be done by application admin only
 response values (1, 0)
