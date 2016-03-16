@@ -14,25 +14,25 @@ and provide your credentials (email id and password) in mail.php
 ----
 
 
-Developers Guide:
------------------
-index.php is the test file.
-please change the $baseUrl and test the web services of RapidFunnel.
-Base URL for the QA env is http://qa1.rapidfunnel.com
+#Developers Guide
 
-general terms:
---------------
-status - true/false. if true then request is success else false.
-errorMessage - if 'status' is false then you will get a errorMessage.
-userId - Loggedin user ID
-accountId - Loggedin user's account ID
-firstName - First name of the logged in user
-lastName - Last name of logged in user
-role - logged in users role
-forceChange - If the user has asked for password change then it will be 1 else 0. if 1 then redirect the user to change password screen else redirect as normal user
-accessToken - This is the token for the loggedin user to maintain identity like we do in session. For every login there will be a different accessToken created in backend. This is the most required param in RapidFunnel web services.
+**index.php** is the test file.  
+please change the **$baseUrl** and test the web services of RapidFunnel.
+Base URL for the QA env is **http://qa1.rapidfunnel.com**
+
+##general terms:
+```text
+status 		  - true/false. if true then request is success else false.  
+errorMessage 	  - if 'status' is false then you will get a errorMessage.  
+userId 		  - Loggedin user ID  
+accountId 	  - Loggedin user's account ID   
+firstName 	  - First name of the logged in user    
+lastName 	  - Last name of logged in user    
+role 		  - logged in users role    
+forceChange 	  - If the user has asked for password change then it will be 1 else 0. if 1 then redirect the user to change   password screen else redirect as normal user    
+accessToken 	  - This is the token for the loggedin user to maintain identity like we do in session. For every login there will be a different accessToken created in backend. This is the most required param in RapidFunnel web services.  
 temporaryPassword - Temp password for the user who requested for forgot password.
-
+```
 Methods:
 ----------
 
