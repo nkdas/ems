@@ -38,11 +38,11 @@ accessToken       - This is the token for the loggedin user to maintain identity
                     web services.  
 temporaryPassword - Temp password for the user who requested for forgot password.
 ```
-Methods:
-----------
 
-Login API
-----------
+##Methods:
+
+###Login API
+```ini
 url: http://www.rapid-funnel.com/api/login
 Method: POST
 param: username, password
@@ -69,7 +69,7 @@ Response:
 		}
 	}
 }
-
+```
 "For accountInfo data":
 accountLevel might have two values
 - "free" (Their top level account is of free type)
