@@ -54,14 +54,14 @@ The following examples show acceptable filenames for Zend Framework classes:
 
 **Functions and Methods:**
 - Only alphanumeric characters may be used. Underscores are not permitted. Numbers are permitted but discouraged in most cases.  
-- Must always start with a lowercase letter. When a function name consists of more than one word, the first letter of each new word must be capitalized. This is commonly called "camelCaps" formatting.  
+- Must always start with a lowercase letter. When a function name consists of more than one word, the first letter of each new word must be capitalized. This is commonly called **camelCaps** formatting.  
 - Function names should be as verbose as is practical to fully describe their purpose and behavior.  
 These are examples of acceptable names for functions:  
-&nbsp;&nbsp- filterInput()  
-&nbsp;&nbsp- getElementById()  
-&nbsp;&nbsp- widgetFactory()  
-- For object-oriented programming, accessors for instance or static variables should always be prefixed with "get" or "set".  
+&nbsp;&nbsp;- filterInput()  
+&nbsp;&nbsp;- getElementById()  
+&nbsp;&nbsp;- widgetFactory()  
+- For object-oriented programming, accessors for instance or static variables should always be prefixed with **get** or **set**.  
 In implementing design patterns, such as the singleton or factory patterns, the name of the method should contain the pattern name where practical to more thoroughly describe behavior.  
-- For methods on objects that are declared with the "private" or "protected" modifier, the first character of the method name must be an underscore. This is the only acceptable application of an underscore in a method name. Methods declared "public" should never contain an underscore.  
+- For methods on objects that are declared with the **private** or **protected** modifier, the first character of the method name must be an underscore. This is the only acceptable application of an underscore in a method name. Methods declared **public** should never contain an underscore.  
 - Functions in the global scope (a.k.a "floating functions") are permitted but discouraged in most cases. Consider wrapping these functions in a static class. 
 
