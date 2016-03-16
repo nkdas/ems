@@ -127,22 +127,29 @@ $sql = "SELECT `id`, `name` FROM `people` "
      . "ORDER BY `name` ASC ";
 ```
 
-Arrays
-Numerically Indexed Arrays
-Negative numbers are not permitted as indices.
-An indexed array may start with any non-negative number, however all base indices besides 0 are discouraged. 
-When declaring indexed arrays with the Array function, a trailing space must be added after each comma delimiter to improve readability: 
+**Arrays**  
+**Numerically Indexed Arrays**
+- Negative numbers are not permitted as indices.  
+- An indexed array may start with any non-negative number, however all base indices besides 0 are discouraged.  
+- When declaring indexed arrays with the Array function, a trailing space must be added after each comma delimiter to improve readability:  
+```php
 $sampleArray = array(1, 2, 3, 'Zend', 'Studio');
-It is permitted to declare multi-line indexed arrays using the "array" construct. In this case, each successive line must be padded with spaces such that beginning of each line is aligned: 
+```
+- It is permitted to declare multi-line indexed arrays using the "array" construct. In this case, each successive line must be padded with spaces such that beginning of each line is aligned: 
+```php
 $sampleArray = array(1, 2, 3, 'Zend', 'Studio',
                      $a, $b, $c,
                      56.44, $d, 500);
-Alternately, the initial array item may begin on the following line. If so, it should be padded at one indentation level greater than the line containing the array declaration, and all successive lines should have the same indentation; the closing paren should be on a line by itself at the same indentation level as the line containing the array declaration: 
+```
+- Alternately, the initial array item may begin on the following line. If so, it should be padded at one indentation level greater than the line containing the array declaration, and all successive lines should have the same indentation;  
+the closing parenthesis should be on a line by itself at the same indentation level as the line containing the array declaration: 
+```php
 $sampleArray = array(
     1, 2, 3, 'Zend', 'Studio',
     $a, $b, $c,
     56.44, $d, 500,
 );
+```
 When using this latter declaration, we encourage using a trailing comma for the last item in the array; this minimizes the impact of adding new items on successive lines, and helps to ensure no parse errors occur due to a missing comma. 
 Associative Arrays
 When declaring associative arrays with the Array construct, breaking the statement into multiple lines is encouraged. In this case, each successive line must be padded with white space such that both the keys and the values are aligned: 
