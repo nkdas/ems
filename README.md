@@ -42,7 +42,7 @@ temporaryPassword - Temp password for the user who requested for forgot password
 ##Methods:
 
 ###Login API
-```json
+```text
 url: http://www.rapid-funnel.com/api/login
 Method: POST
 param: username, password
@@ -66,7 +66,7 @@ Response:
                 "trialPeriodTill" = "2015-05-20";
                 "freeEnterpriseProUser" : "1"
             }
-		}
+        }
     }
 }
 ```
