@@ -84,7 +84,7 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 - Short tags are never allowed. For files containing only PHP code, the closing tag must always be omitted.  
 
 **Strings**  
-**String Literals**  
+&nbsp;&nbsp;**String Literals**
 - When a string is literal (contains no variable substitutions), the apostrophe or single quote **' '** should always be used to demarcate the string:  
 &nbsp;&nbsp;&nbsp;&nbsp;**$a = 'Example String';**   
 **String Literals Containing Apostrophes**  
