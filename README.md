@@ -152,15 +152,14 @@ Response:
 	}
 }
 ```
------------ Old API request and response for contact -----------
+###Old API request and response for contact
+**Add Contact:**
+Phone: Mobile, Home, Work, Other (There can be multiple of any of these types)  
+phone -> Mobile  
+Email: Primary, Home, Work, Other (There can be only one "Primary" and that is
+ where Campaigns and Broadcasts will go for that Contact)  
+email -> primaryEmail
 
- Add Contact:
- Phone: Mobile, Home, Work, Other (There can be multiple of any of these types)
- phone -> Mobile
- Email: Primary, Home, Work, Other (There can be only one "Primary" and that is
- where Campaigns and Broadcasts will go for that Contact)
- email -> primaryEmail
- ------------
  Url:http://local.rapid-funnel.com/api/account-contact/add-contact
  Method: POST
  Param: {
