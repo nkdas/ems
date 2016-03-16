@@ -20,7 +20,7 @@ and provide your credentials (email id and password) in mail.php
 please change the **$baseUrl** and test the web services of RapidFunnel.  
 Base URL for the QA env is **http://qa1.rapidfunnel.com**
 
-##general terms:
+##General terms:
 ```text
 status            - true/false. if true then request is success else false.  
 errorMessage      - if 'status' is false then you will get a errorMessage.  
@@ -492,9 +492,9 @@ Url: <Site-Url>/api/account-award/get-current-award-detail
 Method: POST
 Param: accessToken, userId, incentiveId
 Response: It will vary very little based on the incentive or award type. Please check below.
-
-Award for most leads:
----------------------
+```
+###Award for most leads:
+```text
 {"response":
     {
         "status":"true",
@@ -637,7 +637,7 @@ Response:
     ]}
 }
 ```
---------- New API request and response for contacts ----------------
+###New API request and response for contacts
 
 **Add Contact:**  
 Phone: Mobile, Home, Work, Other (There can be multiple of any of these types)  
