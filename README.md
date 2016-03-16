@@ -43,11 +43,25 @@ This document is applicable only for **Rapid Funnel** application.
 - These conventions define a pseudo-namespace mechanism for Zend Framework. Zend Framework will adopt the PHP namespace feature when it becomes available and is feasible for our developers to use in their applications.  
 **Note:** Code that must be deployed alongside Zend Framework libraries but is not part of the standard or extras libraries (e.g. application code or libraries that are not distributed by Zend) must never start with "Zend_" or "ZendX_".  
 
-**Filenames**
+**Filenames:**
 - Only alphanumeric characters, underscore, and the dash character (-) are permitted. Spaces are strictly prohibited.  
 - Any file that contains PHP code should end with the extension **.php**, with the notable exception of view scripts.  
 The following examples show acceptable filenames for Zend Framework classes:  
 &nbsp;&nbsp;- Zend/Db.php  
 &nbsp;&nbsp;- Zend/Controller/Front.php  
 &nbsp;&nbsp;- Zend/View/Helper/FormRadio.php  
-- File names must map to class names as described above. 
+- File names must map to class names as described above.  
+
+**Functions and Methods:**
+- Only alphanumeric characters may be used. Underscores are not permitted. Numbers are permitted but discouraged in most cases.  
+- Must always start with a lowercase letter. When a function name consists of more than one word, the first letter of each new word must be capitalized. This is commonly called "camelCaps" formatting.  
+- Function names should be as verbose as is practical to fully describe their purpose and behavior.  
+These are examples of acceptable names for functions:  
+&nbsp;&nbsp- filterInput()  
+&nbsp;&nbsp- getElementById()  
+&nbsp;&nbsp- widgetFactory()  
+- For object-oriented programming, accessors for instance or static variables should always be prefixed with "get" or "set".  
+In implementing design patterns, such as the singleton or factory patterns, the name of the method should contain the pattern name where practical to more thoroughly describe behavior.  
+- For methods on objects that are declared with the "private" or "protected" modifier, the first character of the method name must be an underscore. This is the only acceptable application of an underscore in a method name. Methods declared "public" should never contain an underscore.  
+- Functions in the global scope (a.k.a "floating functions") are permitted but discouraged in most cases. Consider wrapping these functions in a static class. 
+
