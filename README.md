@@ -33,9 +33,9 @@ forceChange       - If the user has asked for password change then it will be 1 
                     if 1 then redirect the user to change password screen else redirect  
                     as normal user    
 accessToken       - This is the token for the loggedin user to maintain identity like we  
-		    do in session. For every login there will be a different accessToken  
-		    created in backend. This is the most required param in RapidFunnel  
-		    web services.  
+                    do in session. For every login there will be a different accessToken  
+                    created in backend. This is the most required param in RapidFunnel  
+                    web services.  
 temporaryPassword - Temp password for the user who requested for forgot password.
 ```
 Methods:
