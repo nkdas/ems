@@ -42,7 +42,7 @@ e.g for "user id" name should be **userId**
 where user is the singular of users **(table name)** and **id** is the reference column name in users table.
 
 **Collation:**  
-**utf8_general_ci** for all char, varchar or text fields.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**utf8_general_ci** for all char, varchar or text fields.
 
 **Datatypes:**
 - Should be choosen smartly.
