@@ -80,8 +80,8 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 - For example, **EMBED_SUPPRESS_EMBED_EXCEPTION** is permitted but **EMBED_SUPPRESSEMBEDEXCEPTION** is not.  
 - Constants must be defined as class members with the **const** modifier. Defining constants in the global scope with the **define** function is permitted but strongly discouraged.  
 
-##Coding Style
-**PHP Code Demarcation**
+##Coding Style  
+###PHP Code Demarcation**
 - PHP code must always be delimited by the full-form, standard PHP tags:  
 ```php
 <?php  
@@ -89,8 +89,7 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 ```
 - Short tags are never allowed. For files containing only PHP code, the closing tag must always be omitted.  
 
-**Strings**  
-
+###Strings
 **String Literals**
 - When a string is literal (contains no variable substitutions), the apostrophe or single quote (**' '**) should always be used to demarcate the string: 
 ```php
