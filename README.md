@@ -14,47 +14,31 @@ and provide your credentials (email id and password) in mail.php
 
 --
 
-#DB Design Guidelines for **Rapid Funnel**
+#Coding Guidelines for **Rapid Funnel**
 
 Created By : Rajkumar and Neeraj  
 Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 16th March 2016  
 This document is applicable only for **Rapid Funnel** application.
 
 
-**Storage Engine:**
-- Choose storage engine smartly based on the data in tables.
-[Storage Engines](https://dev.mysql.com/doc/refman/5.0/en/storage-engines.html)
+##PHP File Formatting
+**General:**
+- For files that contain only PHP code, the closing tag **("?>")** is never permitted. It is not required by PHP, and omitting it prevents the accidental injection of trailing white space into the response. 
+Note: Important: Inclusion of arbitrary binary data as permitted by __HALT_COMPILER() is prohibited from PHP files in the Zend Framework project or files derived from them. Use of this feature is only permitted for some installation scripts. 
 
 
-**Tables:**
-- Table names will be in lower case.
-- In case of multiple words then follow **camelCaps** capitalization convention. 
-e.g:  for "users payment info" name should be **usersPaymentInfo**
+**Indentation:**
+- Indentation should consist of 4 spaces. Tabs are not allowed.
 
-**Fields:**
-- Field names will be in lower case. 
-- In case of multiple words then follow **camelCaps** capitalization convention. 
-e.g for "user id" name should be **userId**
+**Maximum Line Length:**
+- The target line length is 80 characters. That is to say, Zend Framework developers should strive keep each line of their code under 80 characters where possible and practical. However, longer lines are acceptable in some circumstances. The maximum length of any line of PHP code is 120 characters. 
 
-**Foreign Keys:**
-- If  a table has a foreign key column of another table then the column will be like
-**userId**
-where user is the singular of users (table name) and **id** is the reference column name in users table.
 
-**Collation:**  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**utf8_general_ci** for all char, varchar or text fields.
-
-**Datatypes:**
-- Should be choosen smartly.
-- Choose datatype as timestamp instead of datetime (if allowed) as datetime takes 4 bytes where as timestamp is only 2 bytes.
-- Using tiny int instead of enum (in fileds like status or user types) as tiny int takes only one byte where as enum one or two bytes based on the options (Please do not forget to add proper comment)
--  Look into datatypes properly before choosing for the field like **TINYINT, SMALLINT, MEDIUMINT** and **INT** which take 1, 2, 3 and 4 bytes respectively.
-
-**Field Size:**
-- Choose appopriate Field Size for columns.  
-Like a name should not be **VARCHAR(255)**, as in real a name won't be 255 characters long.
-
-**Points to Takecare:**
-- Avoid allowing Null in fields if possible.
-- Use unsigned instead of signed if the column is expected to take only positive values like auto increament fields.
-- Use comments wherever required.
+##Naming Conventions
+**Classes:**
+- Zend Framework standardizes on a class naming convention whereby the names of the classes directly map to the directories in which they are stored. The root level directory of Zend Framework's standard library is the "Zend/" directory, whereas the root level directory of Zend Framework's extras library is the "ZendX/" directory. All Zend Framework classes are stored hierarchically under these root directories.. 
+Class names may only contain alphanumeric characters. Numbers are permitted in class names but are discouraged in most cases. Underscores are only permitted in place of the path separator; the filename "Zend/Db/Table.php" must map to the class name "Zend_Db_Table". 
+If a class name is comprised of more than one word, the first letter of each new word must be capitalized. Successive capitalized letters are not allowed, e.g. a class "Zend_PDF" is not allowed while "Zend_Pdf" is acceptable. 
+These conventions define a pseudo-namespace mechanism for Zend Framework. Zend Framework will adopt the PHP namespace feature when it becomes available and is feasible for our developers to use in their applications. 
+See the class names in the standard and extras libraries for examples of this classname convention. 
+Note: Important: Code that must be deployed alongside Zend Framework libraries but is not part of the standard or extras libraries (e.g. application code or libraries that are not distributed by Zend) must never start with "Zend_" or "ZendX_". 
