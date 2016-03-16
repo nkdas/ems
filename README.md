@@ -75,18 +75,19 @@ accountLevel might have two values
 - "free" (Their top level account is of free type)
 - "paid" (account can be of type business or enterprise etc...)  
 
-If the accountLevel is of type paid then there will be "ignoreUserPayment" in response
-"ignoreUserPayment" : it means, the user's payment ignored, this can be done by application admin only
-response values (1, 0)
-if ignoreUserPayment = 0, then we check for account is passThrough(means users need to pay for their account)
-or account is in trialPeriod, values could be {1, 0}
-trialPeriodTill a date say "2015-05-20"
-"freeEnterpriseProUser": If user is of enterprise pro level account and passthrough on and has not paid
-then they automatically become "freeEnterpriseProUser", they have limited access to resources.
+If the accountLevel is of type paid then there will be "ignoreUserPayment" in response.  
+"ignoreUserPayment" : it means, the user's payment is to be ignored, this can be done by application admin only.  
+
+response values (1, 0)  
+if ignoreUserPayment = 0, then we check for account is passThrough(means users need to pay for their account)  
+or account is in trialPeriod, values could be {1, 0}  
+trialPeriodTill a date say "2015-05-20"  
+"freeEnterpriseProUser": If user is of enterprise pro level account and passthrough on and has not paid  
+then they automatically become "freeEnterpriseProUser", they have limited access to resources.  
 
 
-Forgot Password:
-----------------
+###Forgot Password:
+```text
 Url: http://www.rapid-funnel.com/api/login/forgot-password
 Method: POST
 Param: email
@@ -102,9 +103,10 @@ Response:
 		}
 	}
 }
+```
 
-LogOut API:
-----------------
+###LogOut API:
+```text
 Url: http://www.rapid-funnel.com/api/login/logout-users
 Method: POST
 Param: userId, accessToken,
@@ -112,9 +114,10 @@ Response:
 {"response":
 	{"status":"1"}
 }
+```
 
-Change Password:
-----------------
+###Change Password:
+```text
 Url: http://www.rapid-funnel.com/api/login/forgot-password
 Method: POST
 Param: userId, accessToken, password, confirmPassword
@@ -127,9 +130,10 @@ Response:
 		}
 	}
 }
+```
 
-Get contactResourceCampaignRewardCount:
-----------------
+###Get contactResourceCampaignRewardCount:
+```text
 Url: http://www.rapid-funnel.com/api/login/contact-resource-campaign-reward-count
 Method: POST
 Param: userId, accessToken
@@ -147,7 +151,7 @@ Response:
 		}
 	}
 }
-
+```
 ----------- Old API request and response for contact -----------
 
  Add Contact:
