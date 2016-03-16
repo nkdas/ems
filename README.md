@@ -13,14 +13,13 @@ and provide your credentials (email id and password) in mail.php
 
 ----
 
-===========================
- Account Contact Advance Search:
-===========================
+
+#Account Contact Advance Search:
 
 These are various filter that used to do contact search 
 
 Various cases :-
-
+```text
 1. CASE OptIn :-
 	$val[2] = 0
    	$val[0] = from date
@@ -61,3 +60,4 @@ Various cases :-
    		$val[0] = 0
 	CASE Does Not Contains
 	  	$val[0] = 1
+```
