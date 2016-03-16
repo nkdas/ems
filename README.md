@@ -49,25 +49,25 @@ param: username, password
 Response:
 {"response":
 	{"status":"true",
-         "mobileLogo":"http://my.rapidfunnel.com/uploads/branding/account/1/mobileLogo_1436273614.png",
-	 "content": {
-			"userId":"65",
-			"accountId":"1",
-			"firstName":"Biswa",
-			"lastName":"Maji",
-			"role":"account-user",
-			"forceChange":"0",
-			"accessToken":"3c1b9690c9b8d4290ca51eaa585a2a83"
+                "mobileLogo":"http://my.rapidfunnel.com/uploads/branding/account/1/mobileLogo_1436273614.png",
+                "content": {
+                        "userId":"65",
+                        "accountId":"1",
+                        "firstName":"Biswa",
+                        "lastName":"Maji",
+                        "role":"account-user",
+                        "forceChange":"0",
+                        "accessToken":"3c1b9690c9b8d4290ca51eaa585a2a83"
                         "accountInfo": {
                                 "accountLevel":"paid"
                                 "ignoreUserPayment":"0",
-                                "passThrough":"1",               /********** Please check comment below *************/
+                                "passThrough":"1",      /********** Please check comment below *************/
                                 "trialPeriod" = '1';
                                 "trialPeriodTill" = "2015-05-20";
                                 "freeEnterpriseProUser" : "1"
                         }
 		}
-	}
+        }
 }
 ```
 "For accountInfo data":
