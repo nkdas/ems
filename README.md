@@ -10,3 +10,9 @@ About allowing less secure apps - https://support.google.com/accounts/answer/601
 link to turn on 'less secure apps' - http://www.google.com/settings/security/lesssecureapps
 
 and provide your credentials (email id and password) in mail.php
+
+
+------------------------------
+
+ It's very easy to make some words **bold** and other words *italic* with Markdown. You can even [link to 
+ Google!](http://google.com)
