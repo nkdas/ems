@@ -81,7 +81,7 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 - Constants must be defined as class members with the **const** modifier. Defining constants in the global scope with the **define** function is permitted but strongly discouraged.  
 
 ##Coding Style  
-###PHP Code Demarcation**
+###PHP Code Demarcation
 - PHP code must always be delimited by the full-form, standard PHP tags:  
 ```php
 <?php  
@@ -127,7 +127,7 @@ $sql = "SELECT `id`, `name` FROM `people` "
      . "ORDER BY `name` ASC ";
 ```
 
-**Arrays**  
+###Arrays
 **Numerically Indexed Arrays**
 - Negative numbers are not permitted as indices.  
 - An indexed array may start with any non-negative number, however all base indices besides 0 are discouraged.  
@@ -191,7 +191,7 @@ threeArguments(array(
 ), 2, 3);
 ```
 
-**Control Statements**  
+###Control Statements
 **If/Else/Elseif**
 - Control statements based on the if and elseif constructs must have a single space before the opening parenthesis of the conditional and a single space after the closing parenthesis.  
 - Within the conditional statements between the parentheses, operators must be separated by spaces for readability. Inner parentheses are encouraged to improve logical grouping for larger conditional expressions.  
@@ -263,10 +263,10 @@ switch ($numPeople) {
 - The construct default should never be omitted from a switch statement.  
 **Note:** It is sometimes useful to write a case statement which falls through to the next case by not including a break or return within that case. To distinguish these cases from bugs, any case statement where break or return are omitted should contain a comment indicating that the break was intentionally omitted.  
 
-**Inline Documentation**
+###Inline Documentation
 - Class and function header should be present.
 
-**Class and function**
+###Class and function
 - Braces should start in next line for classes and methods.
 ```php
 /**
