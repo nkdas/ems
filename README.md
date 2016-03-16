@@ -167,7 +167,7 @@ $sampleArray = array(
 ```
 - When using this latter declaration, we encourage using a trailing comma for the last item in the array; this minimizes the impact of adding new items on successive lines, and helps to ensure no parse errors occur due to a missing comma. 
 
-**Function and Method Usage**
+###Function and Method Usage
 - Function arguments should be separated by a single trailing space after the comma delimiter.  
 The following is an example of an acceptable invocation of a function that takes three arguments: 
 ```php
@@ -266,7 +266,7 @@ switch ($numPeople) {
 ###Inline Documentation
 - Class and function header should be present.
 
-###Class and function
+###Classes and function
 - Braces should start in next line for classes and methods.
 ```php
 /**
