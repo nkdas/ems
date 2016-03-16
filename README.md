@@ -86,8 +86,8 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 **Strings**  
 **String Literals**  
 - When a string is literal (contains no variable substitutions), the apostrophe or single quote **' '** should always be used to demarcate the string:  
-&nbsp;&nbsp;&nbsp;&nbsp;**$a = 'Example String';**  
-**String Literals Containing Apostrophes**
+&nbsp;&nbsp;&nbsp;&nbsp;**$a = 'Example String';**   
+**String Literals Containing Apostrophes**  
 - When a literal string itself contains apostrophes, it is permitted to demarcate the string with quotation marks or double quotes **" "**. This is especially useful for SQL statements:  
 &nbsp;&nbsp;**$sql = "SELECT `id`, `name` from `people` "**  
 &nbsp;&nbsp;**. "WHERE `name`='Fred' OR `name`='Susan'";**  
