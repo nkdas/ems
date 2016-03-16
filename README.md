@@ -261,7 +261,7 @@ switch ($numPeople) {
 }
 ```
 - The construct default should never be omitted from a switch statement.  
-***Note:*** It is sometimes useful to write a case statement which falls through to the next case by not including a break or return within that case. To distinguish these cases from bugs, any case statement where break or return are omitted should contain a comment indicating that the break was intentionally omitted.  
+**Note:** It is sometimes useful to write a case statement which falls through to the next case by not including a break or return within that case. To distinguish these cases from bugs, any case statement where break or return are omitted should contain a comment indicating that the break was intentionally omitted.  
 
 **Inline Documentation**
 - Class and function header should be present.
