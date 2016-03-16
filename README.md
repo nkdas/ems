@@ -21,7 +21,7 @@ Date:       16th March 2016
 This document is applicable only for **Rapid Funnel** application.
 
 
-Storage Engine:
+**Storage Engine:**
 - Choose storage engine smartly based on the data in tables.
 [Storage Engines](https://dev.mysql.com/doc/refman/5.0/en/storage-engines.html)
 
