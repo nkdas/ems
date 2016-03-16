@@ -16,8 +16,8 @@ and provide your credentials (email id and password) in mail.php
 
 #DB Design Guidelines for **Rapid Funnel**
 
-Created By: Rajkumar and Neeraj
-Date: 16th March 2016
+Created By: Rajkumar and Neeraj  
+Date: 16th March 2016  
 This document is applicable only for **RapidFunnel** application.
 
 
