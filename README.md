@@ -41,4 +41,13 @@ This document is applicable only for **Rapid Funnel** application.
 - Class names may only contain alphanumeric characters. Numbers are permitted in class names but are discouraged in most cases. Underscores are only permitted in place of the path separator; the filename "Zend/Db/Table.php" must map to the class name "Zend_Db_Table".  
 - If a class name is comprised of more than one word, the first letter of each new word must be capitalized. Successive capitalized letters are not allowed, e.g. a class "Zend_PDF" is not allowed while "Zend_Pdf" is acceptable.  
 - These conventions define a pseudo-namespace mechanism for Zend Framework. Zend Framework will adopt the PHP namespace feature when it becomes available and is feasible for our developers to use in their applications.  
-**Note:** Code that must be deployed alongside Zend Framework libraries but is not part of the standard or extras libraries (e.g. application code or libraries that are not distributed by Zend) must never start with "Zend_" or "ZendX_". 
+**Note:** Code that must be deployed alongside Zend Framework libraries but is not part of the standard or extras libraries (e.g. application code or libraries that are not distributed by Zend) must never start with "Zend_" or "ZendX_".  
+
+**Filenames**
+- Only alphanumeric characters, underscore, and the dash character (-) are permitted. Spaces are strictly prohibited.  
+- Any file that contains PHP code should end with the extension **.php**, with the notable exception of view scripts.  
+The following examples show acceptable filenames for Zend Framework classes:  
+* Zend/Db.php
+* Zend/Controller/Front.php
+* Zend/View/Helper/FormRadio.php  
+- File names must map to class names as described above. 
