@@ -78,15 +78,15 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 
 ##Coding Style
 **PHP Code Demarcation**
-- PHP code must always be delimited by the full-form, standard PHP tags: 
-&nbsp;&nbsp;<?php
-&nbsp;&nbsp;?>
+- PHP code must always be delimited by the full-form, standard PHP tags:  
+&nbsp;&nbsp;<?php  
+&nbsp;&nbsp;?>  
 - Short tags are never allowed. For files containing only PHP code, the closing tag must always be omitted.  
 
 **Strings**
 **String Literals**
 - When a string is literal (contains no variable substitutions), the apostrophe or single quote **' '** should always be used to demarcate the string:  
-&nbsp;$nbsp;**$a = 'Example String';**  
+&nbsp;&nbsp;**$a = 'Example String';**  
 **String Literals Containing Apostrophes**
 - When a literal string itself contains apostrophes, it is permitted to demarcate the string with quotation marks or double quotes **" "**. This is especially useful for SQL statements:  
 &nbsp;&nbsp;**$sql = "SELECT `id`, `name` from `people` "**  
