@@ -150,35 +150,48 @@ $sampleArray = array(
     56.44, $d, 500,
 );
 ```
-When using this latter declaration, we encourage using a trailing comma for the last item in the array; this minimizes the impact of adding new items on successive lines, and helps to ensure no parse errors occur due to a missing comma. 
-Associative Arrays
-When declaring associative arrays with the Array construct, breaking the statement into multiple lines is encouraged. In this case, each successive line must be padded with white space such that both the keys and the values are aligned: 
+- When using this latter declaration, we encourage using a trailing comma for the last item in the array; this minimizes the impact of adding new items on successive lines, and helps to ensure no parse errors occur due to a missing comma.   
+
+**Associative Arrays**
+- When declaring associative arrays with the Array construct, breaking the statement into multiple lines is encouraged. In this case, each successive line must be padded with white space such that both the keys and the values are aligned: 
+```php
 $sampleArray = array('firstKey'  => 'firstValue',
                      'secondKey' => 'secondValue');
-Alternately, the initial array item may begin on the following line. If so, it should be padded at one indentation level greater than the line containing the array declaration, and all successive lines should have the same indentation; the closing paren should be on a line by itself at the same indentation level as the line containing the array declaration. For readability, the various "=>" assignment operators should be padded such that they align. 
+```
+- Alternately, the initial array item may begin on the following line. If so, it should be padded at one indentation level greater than the line containing the array declaration, and all successive lines should have the same indentation; the closing parenthesis should be on a line by itself at the same indentation level as the line containing the array declaration. For readability, the various **"=>"** assignment operators should be padded such that they align. 
+```php
 $sampleArray = array(
     'firstKey'  => 'firstValue',
     'secondKey' => 'secondValue',
 );
-When using this latter declaration, we encourage using a trailing comma for the last item in the array; this minimizes the impact of adding new items on successive lines, and helps to ensure no parse errors occur due to a missing comma. 
+```
+- When using this latter declaration, we encourage using a trailing comma for the last item in the array; this minimizes the impact of adding new items on successive lines, and helps to ensure no parse errors occur due to a missing comma. 
 
-Function and Method Usage
-Function arguments should be separated by a single trailing space after the comma delimiter. The following is an example of an acceptable invocation of a function that takes three arguments: 
-1. threeArguments(1, 2, 3);
-Call-time pass-by-reference is strictly prohibited. See the function declarations section for the proper way to pass function arguments by-reference. 
-In passing arrays as arguments to a function, the function call may include the "array" hint and may be split into multiple lines to improve readability. In such cases, the normal guidelines for writing arrays still apply: 
+**Function and Method Usage**
+- Function arguments should be separated by a single trailing space after the comma delimiter.  
+The following is an example of an acceptable invocation of a function that takes three arguments: 
+```php
+threeArguments(1, 2, 3);
+```
+- Call-time pass-by-reference is strictly prohibited.   
+- In passing arrays as arguments to a function, the function call may include the "array" hint and may be split into multiple lines to improve readability. In such cases, the normal guidelines for writing arrays still apply:
+```php
 threeArguments(array(1, 2, 3), 2, 3);
- 
+```
+```php
 threeArguments(array(1, 2, 3, 'Zend', 'Studio',
                      $a, $b, $c,
                      56.44, $d, 500), 2, 3);
- 
+```
+```php
 threeArguments(array(
     1, 2, 3, 'Zend', 'Studio',
     $a, $b, $c,
     56.44, $d, 500
 ), 2, 3);
-Control Statements
+```
+
+**Control Statements**
 If/Else/Elseif
 Control statements based on the if and elseif constructs must have a single space before the opening parenthesis of the conditional and a single space after the closing parenthesis. 
 Within the conditional statements between the parentheses, operators must be separated by spaces for readability. Inner parentheses are encouraged to improve logical grouping for larger conditional expressions. 
