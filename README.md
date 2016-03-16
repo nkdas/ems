@@ -22,7 +22,7 @@ Base URL for the QA env is **http://qa1.rapidfunnel.com**
 
 ##general terms:
 ```text
-status 		  - true/false. if true then request is success else false.  
+status            - true/false. if true then request is success else false.  
 errorMessage      - if 'status' is false then you will get a errorMessage.  
 userId 		  - Loggedin user ID  
 accountId 	  - Loggedin user's account ID   
