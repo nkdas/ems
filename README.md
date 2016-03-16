@@ -47,19 +47,23 @@ This document is applicable only for **Rapid Funnel** application.
 - Only alphanumeric characters, underscore, and the dash character (-) are permitted. Spaces are strictly prohibited.  
 - Any file that contains PHP code should end with the extension **.php**, with the notable exception of view scripts.  
 The following examples show acceptable filenames for Zend Framework classes:  
-&nbsp;&nbsp;- Zend/Db.php  
-&nbsp;&nbsp;- Zend/Controller/Front.php  
-&nbsp;&nbsp;- Zend/View/Helper/FormRadio.php  
+```php
+Zend/Db.php  
+Zend/Controller/Front.php  
+Zend/View/Helper/FormRadio.php  
+```
 - File names must map to class names as described above.  
 
 **Functions and Methods:**
 - Only alphanumeric characters may be used. Underscores are not permitted. Numbers are permitted but discouraged in most cases.  
 - Must always start with a lowercase letter. When a function name consists of more than one word, the first letter of each new word must be capitalized. This is commonly called **camelCaps** formatting.  
 - Function names should be as verbose as is practical to fully describe their purpose and behavior.  
-These are examples of acceptable names for functions:  
-&nbsp;&nbsp;- filterInput()  
-&nbsp;&nbsp;- getElementById()  
-&nbsp;&nbsp;- widgetFactory()  
+These are examples of acceptable names for functions: 
+```php
+filterInput()  
+getElementById()  
+widgetFactory()  
+```
 - For object-oriented programming, accessors for instance or static variables should always be prefixed with **get** or **set**.  
 In implementing design patterns, such as the singleton or factory patterns, the name of the method should contain the pattern name where practical to more thoroughly describe behavior.  
 - For methods on objects that are declared with the **private** or **protected** modifier, the first character of the method name must be an **underscore**. This is the only acceptable application of an underscore in a method name. Methods declared **public** should never contain an underscore.  
@@ -79,8 +83,10 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 ##Coding Style
 **PHP Code Demarcation**
 - PHP code must always be delimited by the full-form, standard PHP tags:  
-&nbsp;&nbsp;&nbsp;&nbsp;<?php  
-&nbsp;&nbsp;&nbsp;&nbsp;?>  
+```php
+<?php  
+?>  
+```
 - Short tags are never allowed. For files containing only PHP code, the closing tag must always be omitted.  
 
 **Strings**  
@@ -100,17 +106,27 @@ $sql = "SELECT `id`, `name` from `people` "
 
 **Variable Substitution**
 - Variable substitution is permitted using either of these forms:  
-&nbsp;&nbsp;- **$greeting = "Hello $name, welcome back!";**  
-&nbsp;&nbsp;- **$greeting = "Hello {$name}, welcome back!";**  
+```php
+$greeting = "Hello $name, welcome back!";    
+$greeting = "Hello {$name}, welcome back!";  
+```
 - For consistency, this form is not permitted:  
-&nbsp;&nbsp;- **$greeting = "Hello ${name}, welcome back!";**  
+```php
+$greeting = "Hello ${name}, welcome back!";
+```
+
 **String Concatenation**
 - Strings must be concatenated using the "." operator. A space must always be added before and after the "." operator to improve readability:  
-&nbsp;&nbsp;- **$company = 'Zend' . ' ' . 'Technologies';**
-- When concatenating strings with the "." operator, it is encouraged to break the statement into multiple lines to improve readability. In these cases, each successive line should be padded with white space such that the "."; operator is aligned under the "=" operator:  
-&nbsp;&nbsp;$sql = "SELECT `id`, `name` FROM `people` "
-&nbsp;&nbsp;&nbsp;&nbsp;. "WHERE `name` = 'Susan' "
-&nbsp;&nbsp;&nbsp;&nbsp;. "ORDER BY `name` ASC ";
+```php
+$company = 'Zend' . ' ' . 'Technologies';
+```
+- When concatenating strings with the "." operator, it is encouraged to break the statement into multiple lines to improve readability. In these cases, each successive line should be padded with white space such that the "."; operator is aligned under the "=" operator: 
+```php
+$sql = "SELECT `id`, `name` FROM `people` "
+     . "WHERE `name` = 'Susan' "
+     . "ORDER BY `name` ASC ";
+```
+
 Arrays
 Numerically Indexed Arrays
 Negative numbers are not permitted as indices.
