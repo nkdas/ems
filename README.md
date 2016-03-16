@@ -47,7 +47,7 @@ This document is applicable only for **Rapid Funnel** application.
 - Only alphanumeric characters, underscore, and the dash character (-) are permitted. Spaces are strictly prohibited.  
 - Any file that contains PHP code should end with the extension **.php**, with the notable exception of view scripts.  
 The following examples show acceptable filenames for Zend Framework classes:  
-&nbsp;&nbsp;- Zend/Db.php
-&nbsp;&nbsp;- Zend/Controller/Front.php
+&nbsp;&nbsp;- Zend/Db.php  
+&nbsp;&nbsp;- Zend/Controller/Front.php  
 &nbsp;&nbsp;- Zend/View/Helper/FormRadio.php  
 - File names must map to class names as described above. 
