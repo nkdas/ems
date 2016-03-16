@@ -153,13 +153,13 @@ Response:
 }
 ```
 ###Old API request and response for contact
-**Add Contact:**
+**Add Contact:**  
 Phone: Mobile, Home, Work, Other (There can be multiple of any of these types)  
 phone -> Mobile  
 Email: Primary, Home, Work, Other (There can be only one "Primary" and that is
  where Campaigns and Broadcasts will go for that Contact)  
 email -> primaryEmail
-
+```text
  Url:http://local.rapid-funnel.com/api/account-contact/add-contact
  Method: POST
  Param: {
@@ -192,11 +192,11 @@ email -> primaryEmail
          }
      }
  }
-
- Get Contact:
- Contacts having multiple phone number(mobile)
- the first number will be returned as phone number
- ------------
+```
+**Get Contact:**  
+ Contacts having multiple phone number(mobile)  
+ the first number will be returned as phone number  
+```text
  Url:http://local.rapid-funnel.com/api/account-contact/get-contact
  Method: POST
  Param: accessToken, userId
@@ -252,11 +252,11 @@ email -> primaryEmail
          }
      }
  }
-
- Get contact details:
-  Contacts having multiple phone number(mobile) the first number
+```
+**Get contact details:**
+  Contacts having multiple phone number(mobile) the first number  
   will be returned as phone number
- --------------------
+```text
  Url: http://local.rapid-funnel.com/api/account-contact/get-contact-details
  Method: POST
  Param: accessToken, contactId, userId
@@ -287,14 +287,14 @@ email -> primaryEmail
          }
      }
  }
+```
+**update contact:**
+  Contacts having multiple phone number(mobile),  
+  the first number will be updated through mobile APP  
 
- update contact:
-  Contacts having multiple phone number(mobile),
-  the first number will be updated through mobile APP
-
-  Contacts having multiple notes,
-  the first note will be updated through mobile APP
- ---------------
+  Contacts having multiple notes,  
+  the first note will be updated through mobile APP  
+```text
  Url: http://local.rapid-funnel.com/api/account-contact/update-contact
  Method: POST
  Param: {
@@ -326,7 +326,7 @@ email -> primaryEmail
         }
     }
  }
-
+```
  Delete contact:
  ---------------
  Url: http://local.rapid-funnel.com/api/account-contact/delete-contact
