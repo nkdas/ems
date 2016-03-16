@@ -62,6 +62,17 @@ These are examples of acceptable names for functions:
 &nbsp;&nbsp;- widgetFactory()  
 - For object-oriented programming, accessors for instance or static variables should always be prefixed with **get** or **set**.  
 In implementing design patterns, such as the singleton or factory patterns, the name of the method should contain the pattern name where practical to more thoroughly describe behavior.  
-- For methods on objects that are declared with the **private** or **protected** modifier, the first character of the method name must be an underscore. This is the only acceptable application of an underscore in a method name. Methods declared **public** should never contain an underscore.  
-- Functions in the global scope (a.k.a "floating functions") are permitted but discouraged in most cases. Consider wrapping these functions in a static class. 
+- For methods on objects that are declared with the **private** or **protected** modifier, the first character of the method name must be an **underscore**. This is the only acceptable application of an underscore in a method name. Methods declared **public** should never contain an underscore.  
+- Functions in the global scope (a.k.a "floating functions") are permitted but discouraged in most cases. Consider wrapping these functions in a static class.  
+ 
+**Variables:**
+- May only contain alphanumeric characters. Underscores are not permitted. Numbers are permitted in variable names but are discouraged in most cases.  
+- Variables that are declared with the **private** or **protected** modifier, the first character of the variable name may be a single **underscore**. This is the only acceptable application of an underscore in a variable name. Variables declared **public** should never start with an underscore.  
+- Variables should always be as verbose as practical to describe the data that the developer intends to store in them. Terse variable names such as **$i** and **$n** are discouraged for all but the smallest loop contexts. If a loop contains more than 20 lines of code, the index variables should have more descriptive names.  
+
+**Constants:**
+- May contain both alphanumeric characters and underscores. Numbers are permitted in constant names.  
+- All letters used in a constant name must be capitalized, while all words in a constant name must be separated by underscore character.  
+- For example, EMBED_SUPPRESS_EMBED_EXCEPTION is permitted but EMBED_SUPPRESSEMBEDEXCEPTION is not.  
+- Constants must be defined as class members with the "const" modifier. Defining constants in the global scope with the "define" function is permitted but strongly discouraged. 
 
