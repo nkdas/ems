@@ -79,7 +79,7 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 ##Coding Style
 **PHP Code Demarcation**
 - PHP code must always be delimited by the full-form, standard PHP tags:  
-&nbsp;&nbsp;<?php  
+|     <?php  
 &nbsp;&nbsp;?>  
 - Short tags are never allowed. For files containing only PHP code, the closing tag must always be omitted.  
 
