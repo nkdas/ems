@@ -39,7 +39,7 @@ e.g for "user id" name should be **userId**
 **Foreign Keys:**
 - If  a table has a foreign key column of another table then the column will be like
 **userId**
-where user is the singular of users **(table name)** and **id** is the reference column name in users table.
+where user is the singular of users (table name) and **id** is the reference column name in users table.
 
 **Collation:**  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**utf8_general_ci** for all char, varchar or text fields.
