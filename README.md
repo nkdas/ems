@@ -90,8 +90,8 @@ In implementing design patterns, such as the singleton or factory patterns, the 
 
 **String Literals Containing Apostrophes**
 - When a literal string itself contains apostrophes, it is permitted to demarcate the string with quotation marks or double quotes **" "**. This is especially useful for SQL statements:  
-&nbsp;&nbsp;**$sql = "SELECT `id`, `name` from `people` "**  
-&nbsp;&nbsp;**. "WHERE `name`='Fred' OR `name`='Susan'";**  
+&nbsp;&nbsp;&nbsp;&nbsp;**$sql = "SELECT `id`, `name` from `people` "**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**. "WHERE `name`='Fred' OR `name`='Susan'";**  
 - This syntax is preferred over escaping apostrophes as it is much easier to read.  
 
 **Variable Substitution**
