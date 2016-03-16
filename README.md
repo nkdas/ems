@@ -14,44 +14,46 @@ and provide your credentials (email id and password) in mail.php
 
 ------------------------------
 
- It's very easy to make some words **bold** and other words *italic* with Markdown. You can even [link to 
- Google!](http://google.com)
- 
-# This is an tag<h1>
-## This is an tag<h2>
-###### This is an tag<h6>
+ DB Design Guidelines for **RapidFunnel**
 
-*This text will be italic*
-_This will also be italic_
-
-**This text will be bold**
-__This will also be bold__
-
-_You **can** combine them_
+Created By: Rajkumar and Neeraj
+Date: 16th March 2016
+This document is applicable only for **RapidFunnel** application.
 
 
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b
-  * 
-  
-1. Item 1
-2. Item 2
-3. Item 3
-   * Item 3a
-   * Item 3b
-   * 
-   
-
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
+Storage Engine:
+- Choose storage engine smartly based on the data in tables.
+[storage Engines](https://dev.mysql.com/doc/refman/5.0/en/storage-engines.html)
 
 
-```javascript
-function fancyAlert(arg) {
-  if(arg) {
-    $.facebox({div:'#foo'})
-  }
-}
-```
+Tables:
+- Table names will be in lower case.
+- In case of multiple words then follow **camelCaps** capitalization convention. 
+e.g:  for "users payment info" name should be **usersPaymentInfo**
+
+Fields:
+- Field names will be in lower case. 
+- In case of multiple words then follow **camelCaps** capitalization convention. 
+e.g for "user id" name should be **userId**
+
+Foreign Keys:
+- If  a table has a foreign key column of another table then the column will be like
+**userId**
+where user is the singular of users**table name** and "id** is the reference column name in users table.
+
+Collation:
+**utf8_general_ci** for all char, varchar or text fields.
+
+Datatypes:
+- Should be choosen smartly.
+- Choose datatype as timestamp if allowed instead of datetime as datetime takes 4 bytes where as timestamp is only 2 bytes.
+- Using tiny int instead of enum in fileds like status or user types as tiny int takes only one byte where as enum one or two bytes based on the options (Please do not forget to add proper comment)
+-  Look into datatypes properly before choosing for the field like **TINYINT, SMALLINT, MEDIUMINT** and INT takes 1, 2, 3 and 4 bytes respectively.
+
+Field Size:
+- Choose appopriate number looking into column like name should not be VARCHAR(255) as in real a name cannot have 255 character long.
+
+Points to Takecare:
+- Avoiding to allow Null in fields if possible.
+- Using unsigned instead of signed if the column expected to take only positive values like auto increament fileds.
+- Use comments wherever required.
