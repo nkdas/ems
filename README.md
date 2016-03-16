@@ -17,6 +17,15 @@ and provide your credentials (email id and password) in mail.php
  It's very easy to make some words **bold** and other words *italic* with Markdown. You can even [link to 
  Google!](http://google.com)
  
-# This is an <h1> tag
-## This is an <h2> tag
-###### This is an <h6> tag
+# This is an tag<h1>
+## This is an tag<h2>
+###### This is an tag<h6>
+
+*This text will be italic*
+_This will also be italic_
+
+**This text will be bold**
+__This will also be bold__
+
+_You **can** combine them_
+
