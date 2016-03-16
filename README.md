@@ -246,8 +246,9 @@ if (($a == $b)
 - PHP allows statements to be written without braces in some circumstances. This coding standard makes no differentiation- all "if", "elseif" or "else" statements must use braces. 
 
 **Switch**
-Control statements written with the "switch" statement must have a single space before the opening parenthesis of the conditional statement and after the closing parenthesis. 
-All content within the "switch" statement must be indented using four spaces. Content under each "case" statement must be indented using an additional four spaces. 
+- Control statements written with the "switch" statement must have a single space before the opening parenthesis of the conditional statement and after the closing parenthesis. 
+- All content within the "switch" statement must be indented using four spaces. Content under each "case" statement must be indented using an additional four spaces. 
+```php
 switch ($numPeople) {
     case 1:
         break;
@@ -258,13 +259,16 @@ switch ($numPeople) {
     default:
         break;
 }
-The construct default should never be omitted from a switch statement. 
-Note: It is sometimes useful to write a case statement which falls through to the next case by not including a break or return within that case. To distinguish these cases from bugs, any case statement where break or return are omitted should contain a comment indicating that the break was intentionally omitted. 
-Inline Documentation
-Class and function header should be present.
+```
+- The construct default should never be omitted from a switch statement.  
+***Note:*** It is sometimes useful to write a case statement which falls through to the next case by not including a break or return within that case. To distinguish these cases from bugs, any case statement where break or return are omitted should contain a comment indicating that the break was intentionally omitted.  
 
-Class and function
-Braces should start in next line for classes and methods.
+**Inline Documentation**
+- Class and function header should be present.
+
+**Class and function**
+- Braces should start in next line for classes and methods.
+```php
 /**
  * Documentation Block Here
  */
@@ -289,8 +293,4 @@ class Foo
     }
 
 }
-
-
-
-
-
+```
