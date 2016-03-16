@@ -12,7 +12,7 @@ link to turn on 'less secure apps' - http://www.google.com/settings/security/les
 and provide your credentials (email id and password) in mail.php
 
 
-------------------------------
+--
 
 ##DB Design Guidelines for **Rapid Funnel**
 
@@ -51,7 +51,7 @@ where user is the singular of users **(table name)** and **id** is the reference
 -  Look into datatypes properly before choosing for the field like **TINYINT, SMALLINT, MEDIUMINT** and **INT** which take 1, 2, 3 and 4 bytes respectively.
 
 **Field Size:**
-- Choose appopriate Field Size for columns.
+- Choose appopriate Field Size for columns.  
 Like a name should not be VARCHAR(255), as in real a name won't be 255 characters long.
 
 **Points to Takecare:**
