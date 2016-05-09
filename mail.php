@@ -16,8 +16,8 @@ function sendMail($mailTo, $mailSubject, $mailBody)
 {
     global $mail;
     // email credentials (change these if you need to use another own email id)
-    $userName = 'neerajkumardas7@gmail.com';
-    $password = '@pp1e@pp1e';
+    $userName = '';
+    $password = '';
 
     // check if a user is signed in
     if (isset($_SESSION['id'])) {
